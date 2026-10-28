@@ -1,28 +1,27 @@
 <!doctype html>
-<!-- Лендинг Вадима, версия 2. Тексты — в content.md, данные портфолио — в script.js -->
+<!-- Лендинг Вадима, версия 3. Тексты — в content.md, данные портфолио — в script.js -->
 <html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Разработка лендинга для бизнеса от 5 000 ₽ — Вадим, веб-разработчик</title>
-  <meta name="description" content="Создание сайта для бизнеса: продающий лендинг с понятной структурой, адаптивной вёрсткой и формой заявки. Срок — от 3 дней, стоимость — от 5 000 ₽.">
+  <title>Разработка лендинга для бизнеса от 10 000 ₽ — Вадим, веб-разработчик</title>
+  <meta name="description" content="Создание сайта для бизнеса: продающий лендинг с понятной структурой, адаптивной вёрсткой и формой заявки. Бесплатная демоверсия, срок — от 3 дней, стоимость — от 10 000 ₽.">
   <meta name="theme-color" content="#f6f5f1">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:title" content="Лендинги для малого бизнеса — Вадим">
   <meta property="og:description" content="Лендинг под цель бизнеса: понятная структура, адаптивная вёрстка и фокус на заявки. От 3 дней.">
-  <!-- После публикации заменить на абсолютный URL, например https://<адрес-сайта>/assets/og-image.jpg -->
-  <meta property="og:image" content="assets/og-image.jpg">
+  <meta property="og:image" content="https://shurhoveckyvadim-creator.github.io/landing-vadim/assets/og-image.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Вадим — лендинги для малого бизнеса. От 3 дней, от 5 000 ₽">
+  <meta property="og:image:alt" content="Вадим — лендинги для малого бизнеса. От 3 дней, от 10 000 ₽">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="assets/og-image.jpg">
+  <meta name="twitter:image" content="https://shurhoveckyvadim-creator.github.io/landing-vadim/assets/og-image.jpg">
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d5c4a'/%3E%3Cpath d='M9 10l7 13 7-13' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -72,12 +71,13 @@
             <a class="btn btn--ghost btn--lg" href="#portfolio">Посмотреть примеры работ</a>
           </div>
 
-          <p class="hero__trust">Отдаю исходный код · помогаю с доменом и хостингом</p>
+          <p class="hero__trust">Бесплатная демоверсия в короткий срок · отдаю исходный код · помогаю с доменом и хостингом</p>
         </div>
 
         <aside class="offer-card reveal" aria-labelledby="offer-title">
           <h2 id="offer-title" class="offer-card__title">Что вы получите</h2>
           <ul class="offer-card__list">
+            <li><strong>Бесплатная демоверсия в короткий срок</strong></li>
             <li>Лендинг под цель бизнеса</li>
             <li>Адаптив от 360px</li>
             <li>Форма заявки и кнопки мессенджеров</li>
@@ -93,12 +93,15 @@
     <section class="section" id="benefits" aria-labelledby="benefits-title">
       <div class="container">
         <header class="section__head reveal">
-          <p class="eyebrow">Зачем это бизнесу</p>
           <h2 id="benefits-title" class="section__title">Что даёт лендинг, сделанный под заявки</h2>
           <p class="section__lead">Лендинг под цель бизнеса: понятная структура, адаптивная вёрстка и фокус на заявки.</p>
         </header>
 
         <ul class="benefits">
+          <li class="benefit benefit--featured reveal">
+            <h3 class="benefit__title">Бесплатная демоверсия в короткий срок</h3>
+            <p>Оставьте заявку — в короткий срок покажу демоверсию лендинга для вашего бизнеса, чтобы вы увидели, как может выглядеть страница.</p>
+          </li>
           <li class="benefit reveal">
             <span class="benefit__num" aria-hidden="true">01</span>
             <h3 class="benefit__title">Одна страница — одна цель</h3>
@@ -120,52 +123,103 @@
             <p>Форма, Telegram и ВКонтакте — в нескольких местах страницы, чтобы клиенту не приходилось искать контакты.</p>
           </li>
         </ul>
+
+        <div class="demo-cta reveal" aria-labelledby="demo-title">
+          <h2 id="demo-title" class="demo-cta__title">Бесплатная демоверсия вашего лендинга</h2>
+          <p class="demo-cta__text">Оставьте заявку — в короткий срок покажу, как может выглядеть страница для вашего бизнеса.</p>
+          <a class="btn btn--demo" href="#contact">Оставь заявку — получи бесплатную демоверсию своего лендинга</a>
+        </div>
       </div>
     </section>
 
-    <!-- 3. Что входит -->
+    <!-- 3. Что входит: тарифы -->
     <section class="section section--alt" id="included" aria-labelledby="included-title">
-      <div class="container included">
-        <div class="included__list reveal">
-          <p class="eyebrow">Состав работ</p>
+      <div class="container">
+        <header class="section__head reveal">
           <h2 id="included-title" class="section__title">Что входит в разработку</h2>
-          <ul class="checklist">
-            <li>Структура страницы под вашу услугу и аудиторию</li>
-            <li>Тексты блоков — по вашим материалам, коротко и по делу</li>
-            <li>Дизайн в едином стиле, без шаблонных стоковых картинок</li>
-            <li>Адаптивная вёрстка: телефон, планшет, компьютер</li>
-            <li>Форма заявки с проверкой полей и понятными ошибками</li>
-            <li>Кнопки мессенджеров и контакты на видных местах</li>
-            <li>Базовая SEO-настройка: title, description, заголовки, alt, превью для соцсетей</li>
-            <li>Проверка на разных экранах перед сдачей</li>
-            <li><strong>Исходный код проекта — передаю вам все файлы сайта</strong></li>
-          </ul>
+          <p class="section__lead">Два пакета с фиксированной ценой. Выберите подходящий — или опишите задачу, и я подскажу.</p>
+        </header>
+
+        <div class="tiers">
+          <article class="tier reveal" aria-labelledby="tier-basic-title">
+            <header class="tier__head">
+              <h3 id="tier-basic-title" class="tier__name">Лендинг</h3>
+            </header>
+            <p class="tier__price">10 000 ₽</p>
+            <p class="tier__for">Для услуги, товара, акции или небольшого бизнеса, которому нужна аккуратная страница.</p>
+            <div class="tier__block">
+              <h4 class="tier__label">Что входит</h4>
+              <ul class="tier__list tier__list--in">
+                <li>Лендинг до 5 экранов</li>
+                <li>Структура страницы под вашу услугу</li>
+                <li>Адаптивная версия для телефона и компьютера</li>
+                <li>Оформление ваших текстов, фото и логотипа</li>
+                <li>Одна форма заявки или кнопка «Заказать звонок»</li>
+                <li>Уведомления о заявке на email или в Telegram</li>
+                <li>Публикация на вашем домене</li>
+                <li>Подключение Яндекс.Метрики</li>
+                <li>2 раунда правок</li>
+                <li>Короткая инструкция: как самостоятельно менять тексты и фото</li>
+              </ul>
+            </div>
+            <div class="tier__block tier__block--out">
+              <h4 class="tier__label">Что не входит</h4>
+              <ul class="tier__list tier__list--out">
+                <li>Написание текстов с нуля</li>
+                <li>Создание логотипа</li>
+                <li>Настройка рекламы</li>
+                <li>CRM</li>
+                <li>Сложные калькуляторы и интеграции</li>
+              </ul>
+            </div>
+            <p class="tier__time"><span>Срок:</span> 3–7 рабочих дней</p>
+            <a class="btn btn--ghost btn--block btn--lg" href="#contact">Оставить заявку</a>
+          </article>
+
+          <article class="tier tier--featured reveal" aria-labelledby="tier-plus-title">
+            <header class="tier__head">
+              <h3 id="tier-plus-title" class="tier__name">Лендинг+</h3>
+              <span class="tier__badge">Рекомендую</span>
+            </header>
+            <p class="tier__price">15 000 ₽</p>
+            <p class="tier__for">Для клиента, которому нужна более полная страница и больше удобства после запуска.</p>
+            <div class="tier__block">
+              <h4 class="tier__label">Что входит</h4>
+              <ul class="tier__list tier__list--in">
+                <li><strong>Всё из пакета «Лендинг»</strong></li>
+                <li>Лендинг до 8 экранов</li>
+                <li>Интеграция карт</li>
+                <li>Дополнительные блоки: отзывы, FAQ, примеры работ, цены или этапы работы</li>
+                <li>Две формы: основная заявка и обратный звонок</li>
+                <li>Подключение Яндекс.Метрики с 2 целями</li>
+                <li>Базовые SEO-настройки: Title и Description</li>
+                <li>Проверка корректного отображения на основных устройствах</li>
+                <li>3 раунда правок</li>
+                <li>Короткая инструкция: как самостоятельно менять тексты и фото</li>
+              </ul>
+            </div>
+            <div class="tier__block tier__block--out">
+              <h4 class="tier__label">Что не входит</h4>
+              <ul class="tier__list tier__list--out">
+                <li>Написание текстов с нуля</li>
+                <li>Настройка рекламы</li>
+                <li>CRM</li>
+                <li>Оплата на сайте</li>
+                <li>Квизы</li>
+                <li>Сложные интеграции</li>
+              </ul>
+            </div>
+            <p class="tier__time"><span>Срок:</span> 3–10 рабочих дней</p>
+            <a class="btn btn--primary btn--block btn--lg" href="#contact">Оставить заявку</a>
+          </article>
         </div>
 
-        <aside class="price reveal" aria-labelledby="price-title">
-          <p class="price__label">Стоимость лендинга</p>
-          <h3 id="price-title" class="price__value">от 5 000 <span>до 15 000 ₽</span></h3>
-          <p class="price__text">Итоговая цена зависит от количества уникальных блоков, сложности дизайна и необходимых интеграций. После короткого обсуждения задачи пришлю точную оценку и сроки.</p>
-          <p class="price__subtitle">От чего зависит цена</p>
-          <ul class="price__factors">
-            <li>количество блоков и сколько из них уникальны;</li>
-            <li>сложность дизайна: по готовому стилю или с нуля;</li>
-            <li>адаптив нестандартных элементов: галерей, таблиц, калькуляторов;</li>
-            <li>форма: простая или с несколькими шагами;</li>
-            <li>интеграции: карты, онлайн-запись, заявки в мессенджер или CRM;</li>
-            <li>наполнение: готовы ли тексты и фото или их нужно подготовить.</li>
-          </ul>
-          <a class="btn btn--primary btn--block" href="#contact">Обсудить проект</a>
-        </aside>
-      </div>
-
-      <div class="container">
         <div class="terms reveal" aria-labelledby="terms-title">
-          <h3 id="terms-title" class="terms__title">Условия работы</h3>
+          <h3 id="terms-title" class="terms__title">В обоих пакетах</h3>
           <ul class="terms__list">
             <li class="terms__item">
-              <strong>2 круга правок</strong>
-              <span>входят в стоимость</span>
+              <strong>Бесплатная демоверсия</strong>
+              <span>в короткий срок</span>
             </li>
             <li class="terms__item">
               <strong>+1 круг правок</strong>
@@ -181,6 +235,10 @@
             </li>
           </ul>
         </div>
+
+        <div class="demo-cta demo-cta--inline reveal">
+          <a class="btn btn--demo" href="#contact">Оставь заявку — получи бесплатную демоверсию своего лендинга</a>
+        </div>
       </div>
     </section>
 
@@ -188,7 +246,6 @@
     <section class="section" id="process" aria-labelledby="process-title">
       <div class="container">
         <header class="section__head reveal">
-          <p class="eyebrow">Этапы</p>
           <h2 id="process-title" class="section__title">Как проходит работа</h2>
           <p class="section__lead">Весь путь — от 3 дней. Срок зависит от объёма и того, как быстро согласуем этапы.</p>
         </header>
@@ -232,7 +289,6 @@
     <section class="section section--alt" id="portfolio" aria-labelledby="portfolio-title">
       <div class="container">
         <header class="section__head reveal">
-          <p class="eyebrow">Портфолио</p>
           <h2 id="portfolio-title" class="section__title">Примеры работ</h2>
           <p class="section__lead">Нажмите на карточку, чтобы увидеть задачу, состав работ и открыть сайт.</p>
         </header>
@@ -255,7 +311,7 @@
                 <picture>
                   <source srcset="assets/alibi-mobile.webp" type="image/webp">
                   <img class="phone__img" src="assets/alibi-mobile.jpg" width="780" height="1688" loading="lazy"
-                       alt="Мобильная версия лендинга «Алиби»: логотип, меню, заголовок и кнопки записи">
+                       alt="Мобильная версия лендинга «Алиби»: логотип, меню, адрес, заголовок «Барбершоп, где тебе рады» и кнопка записи на стрижку">
                 </picture>
               </span>
             </button>
@@ -284,7 +340,6 @@
     <section class="section" id="reviews" aria-labelledby="reviews-title" hidden>
       <div class="container">
         <header class="section__head">
-          <p class="eyebrow">Отзывы</p>
           <h2 id="reviews-title" class="section__title">Что говорят клиенты</h2>
         </header>
         <ul class="reviews">
@@ -300,18 +355,17 @@
     <section class="section" id="faq" aria-labelledby="faq-title">
       <div class="container container--narrow">
         <header class="section__head reveal">
-          <p class="eyebrow">FAQ</p>
           <h2 id="faq-title" class="section__title">Частые вопросы</h2>
         </header>
 
         <div class="faq">
           <details class="faq__item reveal">
             <summary>Сколько стоит лендинг?</summary>
-            <p>От 5 000 до 15 000 ₽. Цена зависит от количества уникальных блоков, сложности дизайна и интеграций. Точную сумму назову после обсуждения задачи — до начала работы.</p>
+            <p>От 10 000 ₽. Пакет «Лендинг» — 10 000 ₽, «Лендинг+» — 15 000 ₽. Что входит в каждый, указано в блоке «Что входит в разработку».</p>
           </details>
           <details class="faq__item reveal">
             <summary>Сколько времени занимает разработка?</summary>
-            <p>От 3 дней. Простой лендинг по готовым материалам — быстрее, страница с уникальным дизайном и интеграциями — дольше. Срок фиксируем вместе с оценкой.</p>
+            <p>От 3 дней: «Лендинг» — 3–7 рабочих дней, «Лендинг+» — 3–10 рабочих дней. Простой лендинг по готовым материалам — быстрее, страница с интеграциями — дольше. Срок фиксируем до начала работы.</p>
           </details>
           <details class="faq__item reveal">
             <summary>Что нужно от меня?</summary>
@@ -323,7 +377,7 @@
           </details>
           <details class="faq__item reveal">
             <summary>Сколько кругов правок входит в цену?</summary>
-            <p>Два круга правок входят в стоимость. Удобнее всего вносить их на этапах структуры и дизайна — до вёрстки. Плюс ещё один круг — в течение недели после сдачи работы.</p>
+            <p>В пакете «Лендинг» — 2 раунда правок, в «Лендинге+» — 3. Удобнее всего вносить их на этапах структуры и дизайна — до вёрстки. Плюс ещё один круг — в течение недели после сдачи работы.</p>
           </details>
           <details class="faq__item reveal">
             <summary>Что с поддержкой после запуска?</summary>
@@ -345,11 +399,11 @@
     <section class="section section--dark" id="contact" aria-labelledby="contact-title">
       <div class="container contact">
         <div class="contact__intro reveal">
-          <p class="eyebrow eyebrow--light">Следующий шаг</p>
           <h2 id="contact-title" class="section__title">Обсудим ваш проект</h2>
           <p class="contact__lead">Опишите задачу в двух словах — отвечу, задам пару уточняющих вопросов и пришлю оценку стоимости и сроков. Это ни к чему не обязывает.</p>
           <ul class="contact__facts">
-            <li>Стоимость — от 5 000 до 15 000 ₽</li>
+            <li>Стоимость — от 10 000 ₽</li>
+            <li>Бесплатная демоверсия в короткий срок</li>
             <li>Срок — от 3 дней</li>
             <li>Цену и срок согласуем до начала работы</li>
           </ul>
@@ -474,6 +528,6 @@
     </div>
   </dialog>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
