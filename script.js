@@ -6,34 +6,7 @@ const LEAD_SOURCE = 'landing-vadim';
 const LEAD_TIMEOUT_MS = 10000;
 const TELEGRAM_USERNAME = 'illemmy';
 
-/* Данные портфолио для модального окна. Тексты синхронизированы с content.md */
-const PROJECTS = {
-  alibi: {
-    title: 'Барбершоп «Алиби»',
-    tags: ['Демо-проект', 'HTML', 'CSS', 'JavaScript'],
-    desktop: {
-      webp: 'assets/alibi-desktop.webp',
-      jpg: 'assets/alibi-desktop.jpg',
-      alt: 'Первый экран лендинга барбершопа «Алиби» на компьютере: заголовок «Барбершоп, где тебе рады» и кнопка записи на стрижку'
-    },
-    mobile: {
-      webp: 'assets/alibi-mobile.webp',
-      jpg: 'assets/alibi-mobile.jpg',
-      alt: 'Мобильная версия лендинга «Алиби»: логотип, меню, адрес, заголовок «Барбершоп, где тебе рады» и кнопка записи на стрижку'
-    },
-    task: 'Показать барбершоп так, чтобы посетитель за минуту понял, какие есть услуги, как выглядит заведение и где оно находится, — и сразу записался.',
-    done: [
-      'Структура услуг',
-      'Блок атмосферы заведения',
-      'Карта с адресом',
-      'Блок отзывов',
-      'Форма записи',
-      'Адаптивная вёрстка'
-    ],
-    tech: 'HTML, CSS, JavaScript',
-    url: 'https://shurhoveckyvadim-creator.github.io/Alibi/'
-  }
-};
+/* Данные портфолио (PROJECTS) — в projects.js, подключается перед этим файлом */
 
 /* ===== Шапка: граница при прокрутке ===== */
 (() => {
@@ -64,7 +37,7 @@ const PROJECTS = {
 /* ===== Модальное окно проекта ===== */
 (() => {
   const modal = document.getElementById('project-modal');
-  if (!modal || typeof modal.showModal !== 'function') return;
+  if (!modal || typeof modal.showModal !== 'function' || typeof PROJECTS === 'undefined') return;
 
   const el = {
     desktop: document.getElementById('modal-desktop'),
@@ -207,6 +180,8 @@ const PROJECTS = {
     },
     contact(value) {
       if (!value) return 'Оставьте Telegram, ссылку на ВК или телефон — иначе я не смогу ответить.';
+      // E-mail не принимаем: ответ приходит в мессенджер или по телефону
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Укажите Telegram, ссылку на ВКонтакте или номер телефона.';
       const digits = value.replace(/\D/g, '');
       const isPhone = /^[+\d\s()-]+$/.test(value) && digits.length >= 10 && digits.length <= 15;
       const isTelegram = /^@[a-zA-Z0-9_]{4,32}$/.test(value) || /t\.me\//i.test(value);

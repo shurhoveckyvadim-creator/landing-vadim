@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Лендинг Вадима, версия 3. Тексты — в content.md, данные портфолио — в script.js -->
+<!-- Лендинг Вадима, версия 4. Тексты — в content.md, данные портфолио — в script.js -->
 <html lang="ru">
 <head>
   <meta charset="utf-8">
@@ -21,7 +21,10 @@
   <meta name="twitter:image" content="https://shurhoveckyvadim-creator.github.io/landing-vadim/assets/og-image.jpg">
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d5c4a'/%3E%3Cpath d='M9 10l7 13 7-13' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@600&display=swap">
+  <link rel="stylesheet" href="styles.css?v=4">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -67,25 +70,55 @@
           <p class="hero__lead">Современный дизайн, адаптивная вёрстка и фокус на заявки. Срок — от 3 дней.</p>
 
           <div class="hero__actions">
-            <a class="btn btn--primary btn--lg" href="#contact">Обсудить проект</a>
-            <a class="btn btn--ghost btn--lg" href="#portfolio">Посмотреть примеры работ</a>
+            <a class="btn btn--demo btn--lg" href="#contact">Получить бесплатную демоверсию</a>
+            <a class="btn btn--ghost btn--lg" href="#contact">Обсудить проект</a>
           </div>
+          <p class="hero__note">
+            Оставьте заявку — покажу концепцию вашего лендинга.
+            <span>Бесплатная демоверсия ни к чему не обязывает.</span>
+          </p>
 
-          <p class="hero__trust">Бесплатная демоверсия в короткий срок · отдаю исходный код · помогаю с доменом и хостингом</p>
+          <a class="hero__link" href="#portfolio">Посмотреть примеры работ</a>
+
+          <p class="hero__trust">Отдаю исходный код · помогаю с доменом и хостингом</p>
         </div>
 
-        <aside class="offer-card reveal" aria-labelledby="offer-title">
-          <h2 id="offer-title" class="offer-card__title">Что вы получите</h2>
-          <ul class="offer-card__list">
-            <li>Бесплатная демоверсия</li>
-            <li>Лендинг под цель бизнеса</li>
-            <li>Адаптив от 360px</li>
-            <li>Форма заявки и кнопки мессенджеров</li>
-            <li>Исходный код</li>
-            <li>Помощь с доменом и хостингом</li>
-            <li>Запуск от 3 дней</li>
-          </ul>
-        </aside>
+        <div class="hero__aside reveal">
+          <!-- Декоративный каркас страницы: структура лендинга → заявка -->
+          <svg class="hero__art" viewBox="0 0 300 360" aria-hidden="true" focusable="false">
+            <rect x="1" y="1" width="298" height="358" rx="18" fill="#fff" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="22" cy="22" r="4" fill="currentColor"/><circle cx="36" cy="22" r="4" fill="currentColor"/><circle cx="50" cy="22" r="4" fill="currentColor"/>
+            <line x1="1" y1="42" x2="299" y2="42" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="160" y="14" width="56" height="16" rx="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="226" y="14" width="56" height="16" rx="8" fill="#1d5c4a" opacity=".14"/>
+            <g fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="258" y="62" width="24" height="40" rx="6"/>
+              <rect x="258" y="112" width="24" height="40" rx="6"/>
+              <rect x="258" y="162" width="24" height="40" rx="6"/>
+              <rect x="258" y="212" width="24" height="40" rx="6"/>
+            </g>
+            <path d="M270 262 V 318 H 230" fill="none" stroke="#1d5c4a" stroke-opacity=".35" stroke-width="1.5" stroke-dasharray="4 5"/>
+            <circle class="hero__art-dot" cx="270" cy="290" r="4" fill="#1d5c4a"/>
+          </svg>
+
+          <aside class="offer-card" aria-labelledby="offer-title">
+            <h2 id="offer-title" class="offer-card__title">Что вы получите</h2>
+            <ul class="offer-card__list">
+              <li class="offer-card__demo"><span class="offer-card__badge">Бесплатная демоверсия</span></li>
+              <li>Лендинг под цель бизнеса</li>
+              <li>Адаптив от 360px</li>
+              <li>Форма заявки и кнопки мессенджеров</li>
+              <li>Исходный код</li>
+              <li>Помощь с доменом и хостингом</li>
+              <li>Запуск от 3 дней</li>
+            </ul>
+          </aside>
+
+          <div class="hero__chip" aria-hidden="true">
+            <span class="hero__chip-icon"></span>
+            Заявка с сайта
+          </div>
+        </div>
       </div>
     </section>
 
@@ -127,7 +160,7 @@
         <div class="demo-cta reveal" aria-labelledby="demo-title">
           <h2 id="demo-title" class="demo-cta__title">Бесплатная демоверсия вашего лендинга</h2>
           <p class="demo-cta__text">Оставьте заявку — покажу, как может выглядеть страница для вашего бизнеса.</p>
-          <a class="btn btn--demo" href="#contact">Оставь заявку — получи бесплатную демоверсию своего лендинга</a>
+          <a class="btn btn--demo btn--xl" href="#contact">Получить бесплатную демоверсию</a>
         </div>
       </div>
     </section>
@@ -249,7 +282,7 @@
         </div>
 
         <div class="demo-cta demo-cta--inline reveal">
-          <a class="btn btn--demo" href="#contact">Оставь заявку — получи бесплатную демоверсию своего лендинга</a>
+          <a class="btn btn--demo btn--xl" href="#contact">Получить бесплатную демоверсию</a>
         </div>
       </div>
     </section>
@@ -453,9 +486,10 @@
 
             <button class="btn btn--primary btn--block" type="submit" id="form-submit">Обсудить проект</button>
             <p class="form__note">Обсудим задачу, и я пришлю оценку. Заявка придёт мне в Telegram.</p>
+            <p class="form__free">Бесплатная демоверсия ни к чему не обязывает.</p>
           </form>
 
-          <div class="form-result" id="form-success" hidden tabindex="-1" role="status">
+          <div class="form-result" id="form-success" hidden tabindex="-1" role="status" aria-live="polite">
             <span class="form-result__mark" aria-hidden="true"></span>
             <h3 class="form-result__title">Заявка отправлена</h3>
             <p>Я отвечу в ближайшее время.</p>
@@ -539,6 +573,7 @@
     </div>
   </dialog>
 
-  <script src="script.js?v=3"></script>
+  <script src="projects.js?v=4"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
