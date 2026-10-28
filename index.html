@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Лендинг Вадима, версия 1. Тексты — в content.md, данные портфолио — в script.js -->
+<!-- Лендинг Вадима, версия 2. Тексты — в content.md, данные портфолио — в script.js -->
 <html lang="ru">
 <head>
   <meta charset="utf-8">
@@ -12,12 +12,17 @@
   <meta property="og:locale" content="ru_RU">
   <meta property="og:title" content="Лендинги для малого бизнеса — Вадим">
   <meta property="og:description" content="Лендинг под цель бизнеса: понятная структура, адаптивная вёрстка и фокус на заявки. От 3 дней.">
-  <!-- [ЗАПОЛНИТЬ] абсолютный URL картинки 1200×630 после публикации -->
-  <meta property="og:image" content="assets/alibi-preview.svg">
+  <!-- После публикации заменить на абсолютный URL, например https://<адрес-сайта>/assets/og-image.jpg -->
+  <meta property="og:image" content="assets/og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Вадим — лендинги для малого бизнеса. От 3 дней, от 5 000 ₽">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="assets/og-image.jpg">
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d5c4a'/%3E%3Cpath d='M9 10l7 13 7-13' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -59,34 +64,28 @@
       <div class="container hero__inner">
         <div class="hero__content reveal">
           <p class="eyebrow">Веб-разработчик для малого бизнеса</p>
-          <h1 id="hero-title" class="hero__title">Разрабатываю продающие лендинги для бизнеса</h1>
+          <h1 id="hero-title" class="hero__title">Разрабатываю <span class="hero__accent">продающие лендинги</span> для бизнеса</h1>
           <p class="hero__lead">Современный дизайн, адаптивная вёрстка и фокус на заявки. Срок — от 3 дней.</p>
 
           <div class="hero__actions">
-            <a class="btn btn--primary" href="#contact">Обсудить проект</a>
-            <a class="btn btn--ghost" href="#portfolio">Посмотреть примеры работ</a>
+            <a class="btn btn--primary btn--lg" href="#contact">Обсудить проект</a>
+            <a class="btn btn--ghost btn--lg" href="#portfolio">Посмотреть примеры работ</a>
           </div>
 
-          <ul class="proof" aria-label="Коротко об условиях">
-            <li class="proof__item"><strong>от 3 дней</strong><span>срок разработки</span></li>
-            <li class="proof__item"><strong>от 360px</strong><span>адаптив под телефоны</span></li>
-            <li class="proof__item"><strong>HTML, CSS, JS</strong><span>без тяжёлых конструкторов</span></li>
-          </ul>
-
-          <p class="hero__note">Стоимость — от 5 000 до 15 000 ₽. Точную оценку пришлю после короткого обсуждения.</p>
+          <p class="hero__trust">Отдаю исходный код · помогаю с доменом и хостингом</p>
         </div>
 
-        <figure class="hero__visual reveal">
-          <div class="window">
-            <div class="window__bar" aria-hidden="true">
-              <span class="window__dot"></span><span class="window__dot"></span><span class="window__dot"></span>
-              <span class="window__url">shurhoveckyvadim-creator.github.io/Alibi</span>
-            </div>
-            <img class="window__img" src="assets/alibi-preview.svg" width="1600" height="1000"
-                 alt="Превью лендинга барбершопа «Алиби»: первый экран с заголовком и кнопкой записи">
-          </div>
-          <figcaption class="hero__caption">Пример работы — демо-лендинг барбершопа «Алиби»</figcaption>
-        </figure>
+        <aside class="offer-card reveal" aria-labelledby="offer-title">
+          <h2 id="offer-title" class="offer-card__title">Что вы получите</h2>
+          <ul class="offer-card__list">
+            <li>Лендинг под цель бизнеса</li>
+            <li>Адаптив от 360px</li>
+            <li>Форма заявки и кнопки мессенджеров</li>
+            <li>Исходный код</li>
+            <li>Помощь с доменом и хостингом</li>
+            <li>Запуск от 3 дней</li>
+          </ul>
+        </aside>
       </div>
     </section>
 
@@ -139,6 +138,7 @@
             <li>Кнопки мессенджеров и контакты на видных местах</li>
             <li>Базовая SEO-настройка: title, description, заголовки, alt, превью для соцсетей</li>
             <li>Проверка на разных экранах перед сдачей</li>
+            <li><strong>Исходный код проекта — передаю вам все файлы сайта</strong></li>
           </ul>
         </div>
 
@@ -157,6 +157,30 @@
           </ul>
           <a class="btn btn--primary btn--block" href="#contact">Обсудить проект</a>
         </aside>
+      </div>
+
+      <div class="container">
+        <div class="terms reveal" aria-labelledby="terms-title">
+          <h3 id="terms-title" class="terms__title">Условия работы</h3>
+          <ul class="terms__list">
+            <li class="terms__item">
+              <strong>2 круга правок</strong>
+              <span>входят в стоимость</span>
+            </li>
+            <li class="terms__item">
+              <strong>+1 круг правок</strong>
+              <span>в течение недели после сдачи работы</span>
+            </li>
+            <li class="terms__item">
+              <strong>Домен и хостинг</strong>
+              <span>помогаю с ними на этапе запуска</span>
+            </li>
+            <li class="terms__item">
+              <strong>Исходный код</strong>
+              <span>остаётся у вас — сайт полностью ваш</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -197,7 +221,7 @@
           <li class="step reveal">
             <span class="step__num">5</span>
             <h3 class="step__title">Запуск</h3>
-            <p>Публикую сайт и проверяю, что заявки доходят.</p>
+            <p>Помогаю с доменом и хостингом, публикую сайт и проверяю, что заявки доходят.</p>
             <p class="step__result"><span>Результат:</span> страница доступна клиентам.</p>
           </li>
         </ol>
@@ -216,12 +240,23 @@
         <ul class="projects">
           <li class="project reveal">
             <button class="project__preview" type="button" data-project="alibi" aria-label="Подробнее о проекте «Барбершоп Алиби»">
+              <span class="project__badge">Демо-проект</span>
               <span class="window window--card">
                 <span class="window__bar" aria-hidden="true">
                   <span class="window__dot"></span><span class="window__dot"></span><span class="window__dot"></span>
                 </span>
-                <img class="window__img" src="assets/alibi-preview.svg" width="1600" height="1000" loading="lazy"
-                     alt="Превью лендинга барбершопа «Алиби»: первый экран с заголовком и кнопкой записи">
+                <picture>
+                  <source srcset="assets/alibi-desktop.webp" type="image/webp">
+                  <img class="window__img" src="assets/alibi-desktop.jpg" width="1440" height="900" loading="lazy"
+                       alt="Первый экран лендинга барбершопа «Алиби» на компьютере: заголовок «Барбершоп, где тебе рады» и кнопка записи на стрижку">
+                </picture>
+              </span>
+              <span class="phone phone--card">
+                <picture>
+                  <source srcset="assets/alibi-mobile.webp" type="image/webp">
+                  <img class="phone__img" src="assets/alibi-mobile.jpg" width="780" height="1688" loading="lazy"
+                       alt="Мобильная версия лендинга «Алиби»: логотип, меню, заголовок и кнопки записи">
+                </picture>
               </span>
             </button>
             <div class="project__body">
@@ -287,12 +322,20 @@
             <p>Нет, и честнее так не обещать: количество заявок зависит от рекламы, спроса и вашего предложения. Гарантирую то, что согласуем: состав блоков, адаптив, рабочую форму и контакты.</p>
           </details>
           <details class="faq__item reveal">
-            <summary>Можно вносить правки?</summary>
-            <p>Да. Основные правки удобнее вносить на этапах структуры и дизайна — до вёрстки. Количество кругов правок обсуждаем при оценке. [ЗАПОЛНИТЬ: число кругов правок]</p>
+            <summary>Сколько кругов правок входит в цену?</summary>
+            <p>Два круга правок входят в стоимость. Удобнее всего вносить их на этапах структуры и дизайна — до вёрстки. Плюс ещё один круг — в течение недели после сдачи работы.</p>
           </details>
           <details class="faq__item reveal">
-            <summary>Что после запуска?</summary>
-            <p>[ЗАПОЛНИТЬ: условия поддержки — бесплатный период исправлений, стоимость доработок]</p>
+            <summary>Что с поддержкой после запуска?</summary>
+            <p>В течение недели после сдачи работы вношу ещё один круг правок без доплаты. Доработки после этого срока — по договорённости.</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>Помогаете ли с доменом и хостингом?</summary>
+            <p>Да. На этапе запуска помогу выбрать и подключить домен и хостинг, опубликую сайт и проверю, что форма заявок работает.</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>Отдаёте ли исходный код?</summary>
+            <p>Да, вы получаете исходный код — все файлы сайта. Сайт полностью ваш: его можно перенести на другой хостинг или доработать с другим разработчиком без привязки ко мне.</p>
           </details>
         </div>
       </div>
@@ -343,19 +386,27 @@
               <p class="field__error" id="f-task-error" aria-live="polite"></p>
             </div>
 
-            <button class="btn btn--primary btn--block" type="submit">Обсудить проект</button>
-            <p class="form__note">Обсудим задачу, и я пришлю оценку. Данные никуда не отправляются автоматически — заявка уйдёт сообщением в мессенджер.</p>
+            <button class="btn btn--primary btn--block" type="submit" id="form-submit">Обсудить проект</button>
+            <p class="form__note">Обсудим задачу, и я пришлю оценку. Заявка придёт мне в Telegram.</p>
           </form>
 
-          <div class="form-success" id="form-success" hidden tabindex="-1">
-            <h3 class="form-success__title">Заявка готова</h3>
-            <p id="form-success-text">Текст заявки скопирован. Откройте мессенджер и вставьте его в сообщение — отвечу и пришлю оценку.</p>
-            <pre class="form-success__message" id="form-success-message"></pre>
-            <div class="form-success__actions">
-              <a class="btn btn--primary" href="https://t.me/illemmy" target="_blank" rel="noopener">Написать в Telegram</a>
-              <a class="btn btn--ghost" href="https://vk.ru/lemurlol" target="_blank" rel="noopener">Написать во ВКонтакте</a>
+          <div class="form-result" id="form-success" hidden tabindex="-1" role="status">
+            <span class="form-result__mark" aria-hidden="true"></span>
+            <h3 class="form-result__title">Заявка отправлена</h3>
+            <p>Я отвечу в ближайшее время.</p>
+            <button class="link-btn" type="button" data-form-reset>Отправить ещё одну заявку</button>
+          </div>
+
+          <div class="form-result form-result--error" id="form-error" hidden tabindex="-1" role="alert">
+            <h3 class="form-result__title">Не получилось отправить заявку</h3>
+            <p>Похоже, проблема со связью или на сервере. Ваши данные не потерялись — отправьте заявку в Telegram, текст уже готов:</p>
+            <pre class="form-result__message" id="form-error-message"></pre>
+            <div class="form-result__actions">
+              <a class="btn btn--primary" id="form-error-telegram" href="https://t.me/illemmy" target="_blank" rel="noopener">Открыть Telegram с заявкой</a>
+              <button class="btn btn--ghost" type="button" id="form-error-retry">Попробовать ещё раз</button>
             </div>
-            <button class="link-btn" type="button" id="form-reset">Заполнить заново</button>
+            <p class="form-result__hint" id="form-error-copy" hidden>Текст заявки скопирован — если он не подставился в Telegram, вставьте его в сообщение.</p>
+            <button class="link-btn" type="button" data-form-reset>Вернуться к форме</button>
           </div>
         </div>
       </div>
@@ -382,12 +433,23 @@
       <button class="modal__close" type="button" data-close aria-label="Закрыть">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
       </button>
-      <div class="window window--modal">
-        <div class="window__bar" aria-hidden="true">
-          <span class="window__dot"></span><span class="window__dot"></span><span class="window__dot"></span>
-          <span class="window__url" id="modal-url"></span>
+      <div class="modal__previews">
+        <div class="window window--modal">
+          <div class="window__bar" aria-hidden="true">
+            <span class="window__dot"></span><span class="window__dot"></span><span class="window__dot"></span>
+            <span class="window__url" id="modal-url"></span>
+          </div>
+          <picture>
+            <source id="modal-desktop-webp" type="image/webp">
+            <img class="window__img" id="modal-desktop" alt="" width="1440" height="900">
+          </picture>
         </div>
-        <img class="window__img" id="modal-img" src="" alt="" width="1600" height="1000">
+        <div class="phone phone--modal">
+          <picture>
+            <source id="modal-mobile-webp" type="image/webp">
+            <img class="phone__img" id="modal-mobile" alt="" width="780" height="1688">
+          </picture>
+        </div>
       </div>
       <div class="modal__body">
         <ul class="tags" id="modal-tags" aria-label="Теги проекта"></ul>
@@ -412,6 +474,6 @@
     </div>
   </dialog>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
