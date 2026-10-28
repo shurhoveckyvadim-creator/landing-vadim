@@ -1,12 +1,26 @@
 'use strict';
 
+/* Приём заявок: Cloudflare Worker пересылает их в Telegram. Токен бота хранится только в Worker. */
+const LEAD_ENDPOINT = 'https://long-union-6a9e.shyrhoveckyvadim.workers.dev/';
+const LEAD_SOURCE = 'landing-vadim';
+const LEAD_TIMEOUT_MS = 10000;
+const TELEGRAM_USERNAME = 'illemmy';
+
 /* Данные портфолио для модального окна. Тексты синхронизированы с content.md */
 const PROJECTS = {
   alibi: {
     title: 'Барбершоп «Алиби»',
     tags: ['Демо-проект', 'HTML', 'CSS', 'JavaScript'],
-    image: 'assets/alibi-preview.svg', // [ЗАПОЛНИТЬ] заменить на реальный скриншот 1600×1000
-    imageAlt: 'Превью лендинга барбершопа «Алиби»: первый экран с заголовком и кнопкой записи',
+    desktop: {
+      webp: 'assets/alibi-desktop.webp',
+      jpg: 'assets/alibi-desktop.jpg',
+      alt: 'Первый экран лендинга барбершопа «Алиби» на компьютере: заголовок «Барбершоп, где тебе рады» и кнопка записи на стрижку'
+    },
+    mobile: {
+      webp: 'assets/alibi-mobile.webp',
+      jpg: 'assets/alibi-mobile.jpg',
+      alt: 'Мобильная версия лендинга «Алиби»: логотип, меню, заголовок и кнопки записи'
+    },
     task: 'Показать барбершоп так, чтобы посетитель за минуту понял, какие есть услуги, как выглядит заведение и где оно находится, — и сразу записался.',
     done: [
       'Структура услуг',
@@ -53,7 +67,10 @@ const PROJECTS = {
   if (!modal || typeof modal.showModal !== 'function') return;
 
   const el = {
-    img: document.getElementById('modal-img'),
+    desktop: document.getElementById('modal-desktop'),
+    desktopWebp: document.getElementById('modal-desktop-webp'),
+    mobile: document.getElementById('modal-mobile'),
+    mobileWebp: document.getElementById('modal-mobile-webp'),
     url: document.getElementById('modal-url'),
     tags: document.getElementById('modal-tags'),
     title: document.getElementById('modal-title'),
@@ -73,11 +90,17 @@ const PROJECTS = {
     }));
   };
 
+  const setPicture = (source, img, image) => {
+    source.srcset = image.webp;
+    img.src = image.jpg;
+    img.alt = image.alt;
+  };
+
   const open = (id, trigger) => {
     const project = PROJECTS[id];
     if (!project) return;
-    el.img.src = project.image;
-    el.img.alt = project.imageAlt;
+    setPicture(el.desktopWebp, el.desktop, project.desktop);
+    setPicture(el.mobileWebp, el.mobile, project.mobile);
     el.url.textContent = project.url.replace(/^https?:\/\//, '').replace(/\/$/, '');
     fillList(el.tags, project.tags, 'tag');
     el.title.textContent = project.title;
@@ -117,8 +140,11 @@ const PROJECTS = {
 (() => {
   const form = document.getElementById('lead-form');
   const success = document.getElementById('form-success');
-  if (!form || !success) return;
+  const failure = document.getElementById('form-error');
+  if (!form || !success || !failure) return;
 
+  const submitBtn = document.getElementById('form-submit');
+  const submitLabel = submitBtn.textContent;
   const fields = {
     name: form.elements.name,
     contact: form.elements.contact,
@@ -170,15 +196,44 @@ const PROJECTS = {
     });
   });
 
-  const buildMessage = () => {
+  const collectLead = () => ({
+    name: fields.name.value.trim(),
+    contact: fields.contact.value.trim(),
+    task: fields.task.value.trim(),
+    date: new Date().toISOString(),
+    source: LEAD_SOURCE
+  });
+
+  const buildMessage = (lead) => {
     const lines = [
       'Здравствуйте, Вадим! Хочу обсудить лендинг.',
-      `Имя: ${fields.name.value.trim()}`,
-      `Контакт: ${fields.contact.value.trim()}`
+      `Имя: ${lead.name}`,
+      `Контакт: ${lead.contact}`
     ];
-    const task = fields.task.value.trim();
-    if (task) lines.push(`Задача: ${task}`);
+    if (lead.task) lines.push(`Задача: ${lead.task}`);
     return lines.join('\n');
+  };
+
+  // Content-Type text/plain — «простой» запрос без preflight: Worker не отвечает на OPTIONS.
+  // Тело — JSON, Worker разбирает его независимо от заголовка.
+  const sendLead = async (lead) => {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), LEAD_TIMEOUT_MS);
+    try {
+      const response = await fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: JSON.stringify(lead),
+        signal: controller.signal
+      });
+      if (!response.ok) return false;
+      const data = await response.json().catch(() => null);
+      return Boolean(data && data.ok);
+    } catch {
+      return false;
+    } finally {
+      clearTimeout(timer);
+    }
   };
 
   const copy = async (text) => {
@@ -190,8 +245,21 @@ const PROJECTS = {
     }
   };
 
+  const setSending = (sending) => {
+    submitBtn.disabled = sending;
+    submitBtn.textContent = sending ? 'Отправляю…' : submitLabel;
+  };
+
+  const show = (panel) => {
+    [form, success, failure].forEach((node) => { node.hidden = node !== panel; });
+    if (panel !== form) panel.focus();
+  };
+
+  let lastMessage = '';
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+    if (submitBtn.disabled) return;
     const results = Object.keys(fields).map(validate);
     if (results.includes(false)) {
       const firstInvalid = form.querySelector('[aria-invalid="true"]');
@@ -199,22 +267,39 @@ const PROJECTS = {
       return;
     }
 
-    // Сервера для приёма заявок пока нет: собираем текст и предлагаем отправить его в мессенджер
-    const message = buildMessage();
-    const copied = await copy(message);
-    document.getElementById('form-success-message').textContent = message;
-    document.getElementById('form-success-text').textContent = copied
-      ? 'Текст заявки скопирован. Откройте мессенджер и вставьте его в сообщение — отвечу и пришлю оценку.'
-      : 'Скопируйте текст заявки ниже и отправьте его в мессенджер — отвечу и пришлю оценку.';
+    const lead = collectLead();
+    setSending(true);
+    const sent = await sendLead(lead);
+    setSending(false);
 
-    form.hidden = true;
-    success.hidden = false;
-    success.focus();
+    if (sent) {
+      form.reset();
+      show(success);
+      return;
+    }
+
+    // Резервный вариант: готовый текст заявки и Telegram с предзаполненным сообщением
+    lastMessage = buildMessage(lead);
+    document.getElementById('form-error-message').textContent = lastMessage;
+    document.getElementById('form-error-telegram').href =
+      `https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(lastMessage)}`;
+    document.getElementById('form-error-copy').hidden = true;
+    show(failure);
   });
 
-  document.getElementById('form-reset').addEventListener('click', () => {
-    success.hidden = true;
-    form.hidden = false;
-    fields.name.focus();
+  document.getElementById('form-error-telegram').addEventListener('click', async () => {
+    document.getElementById('form-error-copy').hidden = !(await copy(lastMessage));
+  });
+
+  document.getElementById('form-error-retry').addEventListener('click', () => {
+    show(form);
+    form.requestSubmit();
+  });
+
+  document.querySelectorAll('[data-form-reset]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      show(form);
+      fields.name.focus();
+    });
   });
 })();
