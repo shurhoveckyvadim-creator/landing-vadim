@@ -13,7 +13,6 @@
   /* Тёплый акцент — только для бесплатной демоверсии. Как фон с тёмным текстом (контраст ~7.8:1) */
   --warm: #d9a441;
   --warm-hover: #c8912f;
-  --warm-soft: #f5e6c6;
   --dark: #15181b;
   --dark-soft: #23272b;
   --error: #b42318;
@@ -556,7 +555,7 @@ button { font: inherit; color: inherit; }
 /* ===== Выгоды ===== */
 .benefits { display: grid; gap: 16px; }
 @media (min-width: 640px) { .benefits { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1100px) { .benefits { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1100px) { .benefits { grid-template-columns: repeat(4, 1fr); } }
 
 .benefit {
   padding: 28px 24px;
@@ -567,26 +566,6 @@ button { font: inherit; color: inherit; }
 }
 .benefit:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
 
-/* Демоверсия — главное преимущество, карточка шире остальных */
-.benefit--featured {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-color: transparent;
-  background: var(--warm-soft);
-}
-@media (min-width: 640px) { .benefit--featured { grid-column: span 2; padding: 32px; } }
-.benefit--featured .benefit__title { color: var(--ink); font-size: clamp(20px, 2.4vw, 24px); }
-.benefit--featured .benefit__title::before {
-  content: "";
-  display: block;
-  width: 32px;
-  height: 4px;
-  margin-bottom: 16px;
-  border-radius: 2px;
-  background: var(--warm);
-}
-.benefit--featured p { max-width: 36em; color: var(--ink); font-size: 16px; }
 .benefit__num {
   display: block;
   margin-bottom: 20px;
@@ -845,6 +824,14 @@ button { font: inherit; color: inherit; }
   counter-reset: step;
 }
 @media (min-width: 640px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+/* В две колонки последний (5-й) этап остаётся один — ставим его по центру */
+@media (min-width: 640px) and (max-width: 1099px) {
+  .step:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc((100% - 16px) / 2);
+  }
+}
 @media (min-width: 1100px) { .steps { grid-template-columns: repeat(5, 1fr); gap: 12px; } }
 
 .step {
