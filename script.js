@@ -136,6 +136,54 @@ const PROJECTS = {
   });
 })();
 
+/* ===== Тарифы: «Остальное» ===== */
+(() => {
+  const panels = [...document.querySelectorAll('.tier__more')];
+  if (!panels.length) return;
+
+  // Открытие и закрытие синхронно во всех карточках, чтобы их было удобно сравнивать
+  panels.forEach((panel) => {
+    panel.addEventListener('toggle', () => {
+      panels.forEach((other) => {
+        if (other !== panel && other.open !== panel.open) other.open = panel.open;
+      });
+    });
+  });
+
+  // На телефоне раскрытый список закрывается касанием по нему.
+  // Касание считается, только если палец почти не сдвинулся и страница не прокрутилась —
+  // так прокрутка списка его не закрывает.
+  const isPhone = window.matchMedia('(max-width: 899px)');
+  const TAP_TOLERANCE = 10;
+  let start = null;
+
+  panels.forEach((panel) => {
+    const body = panel.querySelector('.tier__more-body');
+    const summary = panel.querySelector('summary');
+    if (!body || !summary) return;
+
+    body.addEventListener('pointerdown', (event) => {
+      start = { x: event.clientX, y: event.clientY, scrollY: window.scrollY };
+    });
+
+    body.addEventListener('click', (event) => {
+      if (!isPhone.matches || !panel.open || !start) return;
+      const moved = Math.abs(event.clientX - start.x) > TAP_TOLERANCE
+        || Math.abs(event.clientY - start.y) > TAP_TOLERANCE
+        || Math.abs(window.scrollY - start.scrollY) > TAP_TOLERANCE;
+      start = null;
+      if (moved || String(window.getSelection()).trim()) return;
+
+      panel.open = false;
+      // Списки схлопнулись (вторая карточка — через toggle, асинхронно) —
+      // возвращаем к кнопке, если она ушла за верх экрана
+      setTimeout(() => {
+        if (summary.getBoundingClientRect().top < 0) summary.scrollIntoView({ block: 'center' });
+      }, 50);
+    });
+  });
+})();
+
 /* ===== Форма заявки ===== */
 (() => {
   const form = document.getElementById('lead-form');

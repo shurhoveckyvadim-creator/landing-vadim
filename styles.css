@@ -533,11 +533,11 @@ button { font: inherit; color: inherit; }
   /* subgrid выравнивает строки карточек: цена, описание, списки, срок и кнопка на одной высоте */
   .tiers {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(7, auto);
+    grid-template-rows: repeat(6, auto);
     column-gap: 24px;
     row-gap: 0;
   }
-  .tier { grid-row: span 7; grid-template-rows: subgrid; }
+  .tier { grid-row: span 6; grid-template-rows: subgrid; }
 }
 
 .tier {
@@ -658,7 +658,11 @@ button { font: inherit; color: inherit; }
 }
 .tier__more-btn:hover { border-color: var(--ink); box-shadow: var(--shadow); }
 .tier__more[open] .tier__more-btn::after { transform: rotate(180deg); }
-.tier__more > .tier__list { margin-top: 16px; animation: fade-in .25s ease-out; }
+.tier__more-body { margin-top: 16px; animation: fade-in .25s ease-out; }
+/* На телефоне раскрытый список закрывается касанием (см. script.js) */
+@media (max-width: 899px) {
+  .tier__more-body { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+}
 
 /* ===== Условия работы ===== */
 .terms {
@@ -866,8 +870,7 @@ button { font: inherit; color: inherit; }
 .text-link {
   color: var(--accent);
   font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
   transition: color .2s;
 }
 .text-link:hover { color: var(--accent-hover); }
