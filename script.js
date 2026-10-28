@@ -114,12 +114,25 @@ const TELEGRAM_USERNAME = 'illemmy';
   const panels = [...document.querySelectorAll('.tier__more')];
   if (!panels.length) return;
 
-  // Открытие и закрытие синхронно во всех карточках, чтобы их было удобно сравнивать
+  // Открытие и закрытие синхронно во всех карточках, чтобы их было удобно сравнивать.
+  // На телефоне карточки идут друг под другом: раскрытие верхней сдвигает нижнюю.
+  // Запоминаем положение нажатой кнопки «Остальное» в момент нажатия и после синхронизации
+  // докручиваем страницу на оставшуюся разницу — независимо от того, подстроил ли её браузер сам.
+  let anchor = null; // { summary, top }
+  const keepInPlace = (summary) => { anchor = { summary, top: summary.getBoundingClientRect().top }; };
+
   panels.forEach((panel) => {
+    const summary = panel.querySelector('summary');
+    summary.addEventListener('click', () => keepInPlace(summary));
+
     panel.addEventListener('toggle', () => {
       panels.forEach((other) => {
         if (other !== panel && other.open !== panel.open) other.open = panel.open;
       });
+      if (!anchor || anchor.summary !== summary) return;
+      const shift = summary.getBoundingClientRect().top - anchor.top;
+      anchor = null;
+      if (Math.abs(shift) > 1) window.scrollBy({ top: shift, behavior: 'instant' });
     });
   });
 
@@ -147,9 +160,9 @@ const TELEGRAM_USERNAME = 'illemmy';
       start = null;
       if (moved || String(window.getSelection()).trim()) return;
 
+      keepInPlace(summary);
       panel.open = false;
-      // Списки схлопнулись (вторая карточка — через toggle, асинхронно) —
-      // возвращаем к кнопке, если она ушла за верх экрана
+      // Если касались глубоко в списке, кнопка могла остаться за верхом экрана — возвращаем к ней
       setTimeout(() => {
         if (summary.getBoundingClientRect().top < 0) summary.scrollIntoView({ block: 'center' });
       }, 50);
