@@ -1,0 +1,417 @@
+<!doctype html>
+<!-- Лендинг Вадима, версия 1. Тексты — в content.md, данные портфолио — в script.js -->
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Разработка лендинга для бизнеса от 5 000 ₽ — Вадим, веб-разработчик</title>
+  <meta name="description" content="Создание сайта для бизнеса: продающий лендинг с понятной структурой, адаптивной вёрсткой и формой заявки. Срок — от 3 дней, стоимость — от 5 000 ₽.">
+  <meta name="theme-color" content="#f6f5f1">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Лендинги для малого бизнеса — Вадим">
+  <meta property="og:description" content="Лендинг под цель бизнеса: понятная структура, адаптивная вёрстка и фокус на заявки. От 3 дней.">
+  <!-- [ЗАПОЛНИТЬ] абсолютный URL картинки 1200×630 после публикации -->
+  <meta property="og:image" content="assets/alibi-preview.svg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231d5c4a'/%3E%3Cpath d='M9 10l7 13 7-13' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="logo" href="#top" aria-label="Вадим — на главную">
+        <span class="logo__mark" aria-hidden="true">В</span>
+        <span>Вадим <span class="logo__muted">· лендинги</span></span>
+      </a>
+
+      <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav__list">
+          <li><a href="#included">Что входит</a></li>
+          <li><a href="#process">Этапы</a></li>
+          <li><a href="#portfolio">Работы</a></li>
+          <li><a href="#faq">Вопросы</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <a class="contact-link" href="https://t.me/illemmy" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.7 3.3 2.6 10.7c-1 .4-1 1.4 0 1.7l4.8 1.5 1.8 5.6c.3.8 1.2 1 1.8.4l2.6-2.4 4.9 3.6c.8.6 1.8.2 2-.8l3.3-15.6c.2-1.1-.9-1.9-1.9-1.4ZM9.7 14.2l-.5 3.6-1.2-4 9.7-6.6-8 7Z"/></svg>
+          <span class="contact-link__text">Telegram</span>
+        </a>
+        <a class="contact-link" href="https://vk.ru/lemurlol" target="_blank" rel="noopener" aria-label="Написать во ВКонтакте">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.8 18C6.3 18 2.4 13.5 2.3 6h3.3c.1 5.5 2.6 7.8 4.5 8.3V6h3.1v4.7c1.9-.2 3.9-2.4 4.5-4.7h3.1c-.5 2.9-2.6 5-4.1 5.9 1.5.7 3.9 2.6 4.8 6.1h-3.4c-.7-2.3-2.6-4.1-4.9-4.3V18h-.4Z"/></svg>
+          <span class="contact-link__text">ВКонтакте</span>
+        </a>
+        <a class="btn btn--primary btn--sm header__cta" href="#contact">Обсудить проект</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 1. Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+        <div class="hero__content reveal">
+          <p class="eyebrow">Веб-разработчик для малого бизнеса</p>
+          <h1 id="hero-title" class="hero__title">Разрабатываю продающие лендинги для бизнеса</h1>
+          <p class="hero__lead">Современный дизайн, адаптивная вёрстка и фокус на заявки. Срок — от 3 дней.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#contact">Обсудить проект</a>
+            <a class="btn btn--ghost" href="#portfolio">Посмотреть примеры работ</a>
+          </div>
+
+          <ul class="proof" aria-label="Коротко об условиях">
+            <li class="proof__item"><strong>от 3 дней</strong><span>срок разработки</span></li>
+            <li class="proof__item"><strong>от 360px</strong><span>адаптив под телефоны</span></li>
+            <li class="proof__item"><strong>HTML, CSS, JS</strong><span>без тяжёлых конструкторов</span></li>
+          </ul>
+
+          <p class="hero__note">Стоимость — от 5 000 до 15 000 ₽. Точную оценку пришлю после короткого обсуждения.</p>
+        </div>
+
+        <figure class="hero__visual reveal">
+          <div class="window">
+            <div class="window__bar" aria-hidden="true">
+              <span class="window__dot"></span><span class="window__dot"></span><span class="window__dot"></span>
+              <span class="window__url">shurhoveckyvadim-creator.github.io/Alibi</span>
+            </div>
+            <img class="window__img" src="assets/alibi-preview.svg" width="1600" height="1000"
+                 alt="Превью лендинга барбершопа «Алиби»: первый экран с заголовком и кнопкой записи">
+          </div>
+          <figcaption class="hero__caption">Пример работы — демо-лендинг барбершопа «Алиби»</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 2. Выгоды -->
+    <section class="section" id="benefits" aria-labelledby="benefits-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Зачем это бизнесу</p>
+          <h2 id="benefits-title" class="section__title">Что даёт лендинг, сделанный под заявки</h2>
+          <p class="section__lead">Лендинг под цель бизнеса: понятная структура, адаптивная вёрстка и фокус на заявки.</p>
+        </header>
+
+        <ul class="benefits">
+          <li class="benefit reveal">
+            <span class="benefit__num" aria-hidden="true">01</span>
+            <h3 class="benefit__title">Одна страница — одна цель</h3>
+            <p>Каждый блок отвечает на вопрос клиента и ведёт к кнопке «Записаться» или «Оставить заявку». Ничего, что отвлекает.</p>
+          </li>
+          <li class="benefit reveal">
+            <span class="benefit__num" aria-hidden="true">02</span>
+            <h3 class="benefit__title">Работает на телефоне</h3>
+            <p>Вёрстка проверяется на ширине от 360 до 1920px: текст читается, кнопки нажимаются пальцем, форма не ломается.</p>
+          </li>
+          <li class="benefit reveal">
+            <span class="benefit__num" aria-hidden="true">03</span>
+            <h3 class="benefit__title">Быстро открывается</h3>
+            <p>Чистый HTML, CSS и JavaScript без тяжёлых конструкторов и лишних библиотек.</p>
+          </li>
+          <li class="benefit reveal">
+            <span class="benefit__num" aria-hidden="true">04</span>
+            <h3 class="benefit__title">Понятно, куда писать</h3>
+            <p>Форма, Telegram и ВКонтакте — в нескольких местах страницы, чтобы клиенту не приходилось искать контакты.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. Что входит -->
+    <section class="section section--alt" id="included" aria-labelledby="included-title">
+      <div class="container included">
+        <div class="included__list reveal">
+          <p class="eyebrow">Состав работ</p>
+          <h2 id="included-title" class="section__title">Что входит в разработку</h2>
+          <ul class="checklist">
+            <li>Структура страницы под вашу услугу и аудиторию</li>
+            <li>Тексты блоков — по вашим материалам, коротко и по делу</li>
+            <li>Дизайн в едином стиле, без шаблонных стоковых картинок</li>
+            <li>Адаптивная вёрстка: телефон, планшет, компьютер</li>
+            <li>Форма заявки с проверкой полей и понятными ошибками</li>
+            <li>Кнопки мессенджеров и контакты на видных местах</li>
+            <li>Базовая SEO-настройка: title, description, заголовки, alt, превью для соцсетей</li>
+            <li>Проверка на разных экранах перед сдачей</li>
+          </ul>
+        </div>
+
+        <aside class="price reveal" aria-labelledby="price-title">
+          <p class="price__label">Стоимость лендинга</p>
+          <h3 id="price-title" class="price__value">от 5 000 <span>до 15 000 ₽</span></h3>
+          <p class="price__text">Итоговая цена зависит от количества уникальных блоков, сложности дизайна и необходимых интеграций. После короткого обсуждения задачи пришлю точную оценку и сроки.</p>
+          <p class="price__subtitle">От чего зависит цена</p>
+          <ul class="price__factors">
+            <li>количество блоков и сколько из них уникальны;</li>
+            <li>сложность дизайна: по готовому стилю или с нуля;</li>
+            <li>адаптив нестандартных элементов: галерей, таблиц, калькуляторов;</li>
+            <li>форма: простая или с несколькими шагами;</li>
+            <li>интеграции: карты, онлайн-запись, заявки в мессенджер или CRM;</li>
+            <li>наполнение: готовы ли тексты и фото или их нужно подготовить.</li>
+          </ul>
+          <a class="btn btn--primary btn--block" href="#contact">Обсудить проект</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 4. Как работаем -->
+    <section class="section" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Этапы</p>
+          <h2 id="process-title" class="section__title">Как проходит работа</h2>
+          <p class="section__lead">Весь путь — от 3 дней. Срок зависит от объёма и того, как быстро согласуем этапы.</p>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__num">1</span>
+            <h3 class="step__title">Бриф</h3>
+            <p>Обсуждаем услугу, клиентов и цель страницы.</p>
+            <p class="step__result"><span>Результат:</span> понятная задача, оценка и срок.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">2</span>
+            <h3 class="step__title">Структура</h3>
+            <p>Собираю порядок блоков и тексты.</p>
+            <p class="step__result"><span>Результат:</span> схема страницы, которую вы согласуете до дизайна.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">3</span>
+            <h3 class="step__title">Дизайн</h3>
+            <p>Оформляю блоки в едином стиле.</p>
+            <p class="step__result"><span>Результат:</span> внешний вид страницы на телефоне и компьютере.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">4</span>
+            <h3 class="step__title">Разработка</h3>
+            <p>Верстаю, подключаю форму и контакты, проверяю на разных экранах.</p>
+            <p class="step__result"><span>Результат:</span> рабочая страница.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">5</span>
+            <h3 class="step__title">Запуск</h3>
+            <p>Публикую сайт и проверяю, что заявки доходят.</p>
+            <p class="step__result"><span>Результат:</span> страница доступна клиентам.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 5. Портфолио -->
+    <section class="section section--alt" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">Портфолио</p>
+          <h2 id="portfolio-title" class="section__title">Примеры работ</h2>
+          <p class="section__lead">Нажмите на карточку, чтобы увидеть задачу, состав работ и открыть сайт.</p>
+        </header>
+
+        <ul class="projects">
+          <li class="project reveal">
+            <button class="project__preview" type="button" data-project="alibi" aria-label="Подробнее о проекте «Барбершоп Алиби»">
+              <span class="window window--card">
+                <span class="window__bar" aria-hidden="true">
+                  <span class="window__dot"></span><span class="window__dot"></span><span class="window__dot"></span>
+                </span>
+                <img class="window__img" src="assets/alibi-preview.svg" width="1600" height="1000" loading="lazy"
+                     alt="Превью лендинга барбершопа «Алиби»: первый экран с заголовком и кнопкой записи">
+              </span>
+            </button>
+            <div class="project__body">
+              <h3 class="project__title">Барбершоп «Алиби»</h3>
+              <p class="project__desc">Демо-лендинг для барбершопа: услуги, атмосфера заведения, карта, отзывы и запись.</p>
+              <ul class="tags" aria-label="Теги проекта">
+                <li class="tag tag--accent">Демо-проект</li>
+                <li class="tag">HTML</li>
+                <li class="tag">CSS</li>
+                <li class="tag">JavaScript</li>
+              </ul>
+              <button class="btn btn--ghost btn--sm" type="button" data-project="alibi">Смотреть проект</button>
+            </div>
+          </li>
+        </ul>
+
+        <div class="section__cta reveal">
+          <p>Нужен похожий сайт для вашего бизнеса?</p>
+          <a class="btn btn--primary" href="#contact">Обсудить проект</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Отзывы. Скрыт, пока нет реальных отзывов. Чтобы включить — убрать hidden и заполнить карточки. -->
+    <section class="section" id="reviews" aria-labelledby="reviews-title" hidden>
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow">Отзывы</p>
+          <h2 id="reviews-title" class="section__title">Что говорят клиенты</h2>
+        </header>
+        <ul class="reviews">
+          <li class="review">
+            <blockquote class="review__text">[ЗАПОЛНИТЬ: текст реального отзыва]</blockquote>
+            <p class="review__author">[ЗАПОЛНИТЬ: имя], <span>[ЗАПОЛНИТЬ: сфера бизнеса, что делали]</span></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container container--narrow">
+        <header class="section__head reveal">
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-title" class="section__title">Частые вопросы</h2>
+        </header>
+
+        <div class="faq">
+          <details class="faq__item reveal">
+            <summary>Сколько стоит лендинг?</summary>
+            <p>От 5 000 до 15 000 ₽. Цена зависит от количества уникальных блоков, сложности дизайна и интеграций. Точную сумму назову после обсуждения задачи — до начала работы.</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>Сколько времени занимает разработка?</summary>
+            <p>От 3 дней. Простой лендинг по готовым материалам — быстрее, страница с уникальным дизайном и интеграциями — дольше. Срок фиксируем вместе с оценкой.</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>Что нужно от меня?</summary>
+            <p>Описание услуги, цены, контакты, логотип и фото, если есть. Если текстов нет — помогу собрать их по короткому брифу.</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>Вы гарантируете заявки?</summary>
+            <p>Нет, и честнее так не обещать: количество заявок зависит от рекламы, спроса и вашего предложения. Гарантирую то, что согласуем: состав блоков, адаптив, рабочую форму и контакты.</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>Можно вносить правки?</summary>
+            <p>Да. Основные правки удобнее вносить на этапах структуры и дизайна — до вёрстки. Количество кругов правок обсуждаем при оценке. [ЗАПОЛНИТЬ: число кругов правок]</p>
+          </details>
+          <details class="faq__item reveal">
+            <summary>Что после запуска?</summary>
+            <p>[ЗАПОЛНИТЬ: условия поддержки — бесплатный период исправлений, стоимость доработок]</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Финальный CTA -->
+    <section class="section section--dark" id="contact" aria-labelledby="contact-title">
+      <div class="container contact">
+        <div class="contact__intro reveal">
+          <p class="eyebrow eyebrow--light">Следующий шаг</p>
+          <h2 id="contact-title" class="section__title">Обсудим ваш проект</h2>
+          <p class="contact__lead">Опишите задачу в двух словах — отвечу, задам пару уточняющих вопросов и пришлю оценку стоимости и сроков. Это ни к чему не обязывает.</p>
+          <ul class="contact__facts">
+            <li>Стоимость — от 5 000 до 15 000 ₽</li>
+            <li>Срок — от 3 дней</li>
+            <li>Цену и срок согласуем до начала работы</li>
+          </ul>
+          <p class="contact__direct">Или напишите напрямую:</p>
+          <div class="contact__links">
+            <a class="btn btn--light" href="https://t.me/illemmy" target="_blank" rel="noopener">Написать в Telegram</a>
+            <a class="btn btn--outline-light" href="https://vk.ru/lemurlol" target="_blank" rel="noopener">Написать во ВКонтакте</a>
+          </div>
+        </div>
+
+        <div class="form-card reveal">
+          <form class="form" id="lead-form" novalidate>
+            <div class="field">
+              <label class="field__label" for="f-name">Имя</label>
+              <input class="field__input" id="f-name" name="name" type="text" autocomplete="name"
+                     required minlength="2" maxlength="60" aria-describedby="f-name-error">
+              <p class="field__error" id="f-name-error" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="f-contact">Как с вами связаться</label>
+              <input class="field__input" id="f-contact" name="contact" type="text" autocomplete="tel"
+                     required maxlength="80" placeholder="@username, ссылка на ВК или телефон"
+                     aria-describedby="f-contact-hint f-contact-error">
+              <p class="field__hint" id="f-contact-hint">Telegram, ВКонтакте или номер телефона</p>
+              <p class="field__error" id="f-contact-error" aria-live="polite"></p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="f-task">Коротко о задаче <span class="field__optional">необязательно</span></label>
+              <textarea class="field__input field__input--area" id="f-task" name="task" rows="4" maxlength="1000"
+                        placeholder="Например: барбершоп, нужен лендинг с услугами, ценами и записью"
+                        aria-describedby="f-task-error"></textarea>
+              <p class="field__error" id="f-task-error" aria-live="polite"></p>
+            </div>
+
+            <button class="btn btn--primary btn--block" type="submit">Обсудить проект</button>
+            <p class="form__note">Обсудим задачу, и я пришлю оценку. Данные никуда не отправляются автоматически — заявка уйдёт сообщением в мессенджер.</p>
+          </form>
+
+          <div class="form-success" id="form-success" hidden tabindex="-1">
+            <h3 class="form-success__title">Заявка готова</h3>
+            <p id="form-success-text">Текст заявки скопирован. Откройте мессенджер и вставьте его в сообщение — отвечу и пришлю оценку.</p>
+            <pre class="form-success__message" id="form-success-message"></pre>
+            <div class="form-success__actions">
+              <a class="btn btn--primary" href="https://t.me/illemmy" target="_blank" rel="noopener">Написать в Telegram</a>
+              <a class="btn btn--ghost" href="https://vk.ru/lemurlol" target="_blank" rel="noopener">Написать во ВКонтакте</a>
+            </div>
+            <button class="link-btn" type="button" id="form-reset">Заполнить заново</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <p class="footer__name">Вадим</p>
+        <p class="footer__text">Разработка лендингов для малого бизнеса</p>
+      </div>
+      <ul class="footer__links">
+        <li><a href="https://t.me/illemmy" target="_blank" rel="noopener">Написать в Telegram</a></li>
+        <li><a href="https://vk.ru/lemurlol" target="_blank" rel="noopener">Написать во ВКонтакте</a></li>
+      </ul>
+      <p class="footer__copy">© 2026 Вадим</p>
+    </div>
+  </footer>
+
+  <!-- Модальное окно проекта: содержимое подставляется из PROJECTS в script.js -->
+  <dialog class="modal" id="project-modal" aria-labelledby="modal-title">
+    <div class="modal__inner">
+      <button class="modal__close" type="button" data-close aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <div class="window window--modal">
+        <div class="window__bar" aria-hidden="true">
+          <span class="window__dot"></span><span class="window__dot"></span><span class="window__dot"></span>
+          <span class="window__url" id="modal-url"></span>
+        </div>
+        <img class="window__img" id="modal-img" src="" alt="" width="1600" height="1000">
+      </div>
+      <div class="modal__body">
+        <ul class="tags" id="modal-tags" aria-label="Теги проекта"></ul>
+        <h2 class="modal__title" id="modal-title"></h2>
+        <div class="modal__grid">
+          <div>
+            <h3 class="modal__subtitle">Задача</h3>
+            <p id="modal-task"></p>
+          </div>
+          <div>
+            <h3 class="modal__subtitle">Что сделано</h3>
+            <ul class="modal__done" id="modal-done"></ul>
+          </div>
+        </div>
+        <h3 class="modal__subtitle">Технологии</h3>
+        <p id="modal-tech"></p>
+        <div class="modal__actions">
+          <a class="btn btn--primary" id="modal-link" href="#" target="_blank" rel="noopener">Открыть сайт</a>
+          <a class="btn btn--ghost" href="#contact" data-close>Обсудить похожий проект</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
