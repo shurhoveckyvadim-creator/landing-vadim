@@ -114,32 +114,30 @@ const TELEGRAM_USERNAME = 'illemmy';
   const panels = [...document.querySelectorAll('.tier__more')];
   if (!panels.length) return;
 
-  // Открытие и закрытие синхронно во всех карточках, чтобы их было удобно сравнивать.
-  // На телефоне карточки идут друг под другом: раскрытие верхней сдвигает нижнюю.
-  // Запоминаем положение нажатой кнопки «Остальное» в момент нажатия и после синхронизации
-  // докручиваем страницу на оставшуюся разницу — независимо от того, подстроил ли её браузер сам.
-  let anchor = null; // { summary, top }
-  const keepInPlace = (summary) => { anchor = { summary, top: summary.getBoundingClientRect().top }; };
+  // Карточки рядом (ПК) — «Остальное» открывается и закрывается в обеих сразу, чтобы их было удобно сравнивать.
+  // Карточки друг под другом (телефон) — каждая открывается сама по себе.
+  const isPhone = window.matchMedia('(max-width: 899px)');
 
   panels.forEach((panel) => {
-    const summary = panel.querySelector('summary');
-    summary.addEventListener('click', () => keepInPlace(summary));
-
     panel.addEventListener('toggle', () => {
+      if (isPhone.matches) return;
       panels.forEach((other) => {
         if (other !== panel && other.open !== panel.open) other.open = panel.open;
       });
-      if (!anchor || anchor.summary !== summary) return;
-      const shift = summary.getBoundingClientRect().top - anchor.top;
-      anchor = null;
-      if (Math.abs(shift) > 1) window.scrollBy({ top: shift, behavior: 'instant' });
     });
+  });
+
+  // При переходе к ширине ПК (поворот планшета, изменение окна) выравниваем состояние:
+  // если хоть один список открыт — открываем все
+  isPhone.addEventListener('change', () => {
+    if (isPhone.matches) return;
+    const anyOpen = panels.some((panel) => panel.open);
+    panels.forEach((panel) => { panel.open = anyOpen; });
   });
 
   // На телефоне раскрытый список закрывается касанием по нему.
   // Касание считается, только если палец почти не сдвинулся и страница не прокрутилась —
   // так прокрутка списка его не закрывает.
-  const isPhone = window.matchMedia('(max-width: 899px)');
   const TAP_TOLERANCE = 10;
   let start = null;
 
@@ -160,12 +158,9 @@ const TELEGRAM_USERNAME = 'illemmy';
       start = null;
       if (moved || String(window.getSelection()).trim()) return;
 
-      keepInPlace(summary);
       panel.open = false;
       // Если касались глубоко в списке, кнопка могла остаться за верхом экрана — возвращаем к ней
-      setTimeout(() => {
-        if (summary.getBoundingClientRect().top < 0) summary.scrollIntoView({ block: 'center' });
-      }, 50);
+      if (summary.getBoundingClientRect().top < 0) summary.scrollIntoView({ block: 'center' });
     });
   });
 })();
