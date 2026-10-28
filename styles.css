@@ -533,11 +533,20 @@ button { font: inherit; color: inherit; }
   /* subgrid выравнивает строки карточек: цена, описание, списки, срок и кнопка на одной высоте */
   .tiers {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(6, auto);
+    grid-template-rows: repeat(8, auto);
     column-gap: 24px;
     row-gap: 0;
   }
-  .tier { grid-row: span 6; grid-template-rows: subgrid; }
+  .tier { grid-row: span 8; grid-template-rows: subgrid; }
+  /* «Что входит»: подпись, видимый список и «Остальное» — отдельные строки,
+     чтобы кнопки «Остальное» в обеих карточках стояли на одном уровне */
+  .tier > .tier__block {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+    align-content: start;
+  }
 }
 
 .tier {
@@ -594,7 +603,7 @@ button { font: inherit; color: inherit; }
   letter-spacing: .06em;
   text-transform: uppercase;
 }
-.tier__list { display: grid; gap: 10px; }
+.tier__list { display: grid; gap: 10px; align-content: start; }
 .tier__list li { position: relative; padding-left: 30px; font-size: 16px; line-height: 1.45; }
 .tier__list strong { font-weight: 650; }
 .tier__list--in li::before {
