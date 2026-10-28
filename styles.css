@@ -629,6 +629,37 @@ button { font: inherit; color: inherit; }
 .tier__time span { color: var(--ink-mute); font-weight: 500; }
 .tier > .btn { align-self: end; margin-top: 20px; }
 
+/* «Остальное»: раскрывает оставшиеся пункты тарифа */
+.tier__more { margin-top: 16px; }
+.tier__more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.tier__more-btn::-webkit-details-marker { display: none; }
+.tier__more-btn::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%2315181b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform .2s;
+}
+.tier__more-btn:hover { border-color: var(--ink); box-shadow: var(--shadow); }
+.tier__more[open] .tier__more-btn::after { transform: rotate(180deg); }
+.tier__more > .tier__list { margin-top: 16px; animation: fade-in .25s ease-out; }
+
 /* ===== Условия работы ===== */
 .terms {
   margin-top: 48px;
@@ -716,27 +747,13 @@ button { font: inherit; color: inherit; }
   position: relative;
   display: block;
   width: 100%;
-  padding: 52px 20px 0;
+  padding: 24px 20px 0;
   overflow: hidden;
   border: 0;
   background: var(--bg);
   cursor: pointer;
 }
-@media (min-width: 560px) { .project__preview { padding: 56px 28px 0; } }
-.project__badge {
-  position: absolute;
-  top: 14px;
-  left: 20px;
-  z-index: 2;
-  padding: 4px 12px;
-  border-radius: 999px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 600;
-}
-@media (min-width: 560px) { .project__badge { top: 16px; left: 28px; } }
+@media (min-width: 560px) { .project__preview { padding: 32px 28px 0; } }
 .project__preview .window {
   width: 88%;
   border-bottom-left-radius: 0;
@@ -781,8 +798,7 @@ button { font: inherit; color: inherit; }
     display: grid;
     grid-template-columns: 1.4fr 1fr;
   }
-  .project:only-child .project__preview { padding: 64px 40px 0; }
-  .project:only-child .project__badge { top: 22px; left: 40px; }
+  .project:only-child .project__preview { padding: 40px 40px 0; }
   .project:only-child .phone--card { right: 40px; }
   .project:only-child .project__body {
     justify-content: center;
@@ -846,6 +862,15 @@ button { font: inherit; color: inherit; }
   padding: 0 44px 22px 0;
   color: var(--ink-soft);
 }
+
+.text-link {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color .2s;
+}
+.text-link:hover { color: var(--accent-hover); }
 
 /* ===== Финальный CTA ===== */
 .contact { display: grid; gap: 40px; align-items: start; }
