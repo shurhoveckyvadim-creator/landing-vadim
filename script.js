@@ -8,6 +8,39 @@ const TELEGRAM_USERNAME = 'illemmy';
 
 /* Данные портфолио (PROJECTS) — в projects.js, подключается перед этим файлом */
 
+/* ===== Цели Яндекс Метрики ===== */
+const METRIKA_ID = 113864698;
+
+// Только идентификатор цели — без значений полей, контактов и текста заявки.
+// Если Метрика не загрузилась или упала, форма и переходы работают как обычно.
+const reachGoal = (goal) => {
+  try {
+    if (typeof window.ym === 'function') window.ym(METRIKA_ID, 'reachGoal', goal);
+  } catch {
+    /* Метрика недоступна — цель пропускаем */
+  }
+};
+
+// Клики по ссылкам на Telegram и ВКонтакте: один делегированный обработчик на всю страницу.
+// Переход не задерживается — цель отправляется асинхронно самой Метрикой.
+const LINK_GOALS = [
+  { goal: 'telegram_click', hosts: ['t.me'] },
+  { goal: 'vk_click', hosts: ['vk.ru', 'vk.com'] }
+];
+
+document.addEventListener('click', (event) => {
+  const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+  if (!link) return;
+  let host;
+  try {
+    host = new URL(link.href).hostname.replace(/^www\./, '');
+  } catch {
+    return;
+  }
+  const match = LINK_GOALS.find(({ hosts }) => hosts.includes(host));
+  if (match) reachGoal(match.goal);
+});
+
 /* ===== Шапка: граница при прокрутке ===== */
 (() => {
   const header = document.querySelector('.header');
@@ -304,6 +337,7 @@ const TELEGRAM_USERNAME = 'illemmy';
     setSending(false);
 
     if (sent) {
+      reachGoal('lead_success');
       form.reset();
       show(success);
       return;
