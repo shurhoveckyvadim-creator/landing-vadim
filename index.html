@@ -3,6 +3,30 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+  (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for(var j=0;j<document.scripts.length;j++){
+          if(document.scripts[j].src===r){return;}
+      }
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0];
+      k.async=1;k.src=r;a.parentNode.insertBefore(k,a);
+  })(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=113864698','ym');
+
+  ym(113864698,'init',{
+      ssr:true,
+      webvisor:false,
+      clickmap:true,
+      ecommerce:"dataLayer",
+      referrer:document.referrer,
+      url:location.href,
+      accurateTrackBounce:true,
+      trackLinks:true
+  });
+  </script>
+  <!-- /Yandex.Metrika counter -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Разработка лендинга для бизнеса</title>
   <meta name="description" content="Создание сайта для бизнеса: продающий лендинг с понятной структурой, адаптивной вёрсткой и формой заявки. Бесплатная демоверсия, срок — от 3 дней, стоимость — от 10 000 ₽.">
@@ -30,6 +54,7 @@
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+  <noscript><div><img src="https://mc.yandex.ru/watch/113864698" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
   <a class="skip-link" href="#main">Перейти к содержанию</a>
 
   <header class="header" id="top">
@@ -445,14 +470,14 @@
           <form class="form" id="lead-form" novalidate>
             <div class="field">
               <label class="field__label" for="f-name">Имя</label>
-              <input class="field__input" id="f-name" name="name" type="text" autocomplete="name"
+              <input class="field__input ym-disable-keys" id="f-name" name="name" type="text" autocomplete="name"
                      required minlength="2" maxlength="60" aria-describedby="f-name-error">
               <p class="field__error" id="f-name-error" aria-live="polite"></p>
             </div>
 
             <div class="field">
               <label class="field__label" for="f-contact">Как с вами связаться</label>
-              <input class="field__input" id="f-contact" name="contact" type="text" autocomplete="tel"
+              <input class="field__input ym-disable-keys" id="f-contact" name="contact" type="text" autocomplete="tel"
                      required maxlength="80" placeholder="@username, ссылка на ВК или телефон"
                      aria-describedby="f-contact-hint f-contact-error">
               <p class="field__hint" id="f-contact-hint">Telegram, ВКонтакте или номер телефона</p>
@@ -461,7 +486,7 @@
 
             <div class="field">
               <label class="field__label" for="f-task">Коротко о задаче <span class="field__optional">необязательно</span></label>
-              <textarea class="field__input field__input--area" id="f-task" name="task" rows="4" maxlength="1000"
+              <textarea class="field__input field__input--area ym-disable-keys" id="f-task" name="task" rows="4" maxlength="1000"
                         placeholder="Например: барбершоп, нужен лендинг с услугами, ценами и записью"
                         aria-describedby="f-task-error"></textarea>
               <p class="field__error" id="f-task-error" aria-live="polite"></p>
