@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Лендинг Вадима, версия 6. Тексты — в content.md, данные портфолио — в script.js -->
+<!-- Лендинг Вадима, версия 7. Тексты — в content.md, данные портфолио — в script.js -->
 <html lang="ru">
 <head>
   <meta charset="utf-8">
@@ -50,7 +50,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Unbounded:wght@600&display=swap">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -629,8 +629,8 @@
               <p class="field__error" id="f-task-error" aria-live="polite"></p>
             </div>
 
-            <!-- Согласие на обработку данных: появляется при первой попытке отправить форму (script.js) -->
-            <div class="field field--consent" id="f-consent-field" hidden>
+            <!-- Согласие на обработку данных: обязательное, без галочки форма не отправляется (script.js) -->
+            <div class="field field--consent" id="f-consent-field">
               <label class="consent" for="f-consent">
                 <input class="consent__input" id="f-consent" name="consent" type="checkbox" required
                        aria-describedby="f-consent-error">
@@ -721,7 +721,7 @@
     </div>
   </dialog>
 
-  <script src="projects.js?v=6"></script>
-  <script src="script.js?v=6"></script>
+  <script src="projects.js?v=7"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

@@ -412,9 +412,8 @@ document.addEventListener('click', (event) => {
 
   let lastMessage = '';
 
-  // Согласие на обработку персональных данных: поле появляется при первой попытке отправить форму,
-  // без галочки заявка не отправляется. В заявку само согласие не передаётся.
-  const consentField = document.getElementById('f-consent-field');
+  // Согласие на обработку персональных данных: без галочки заявка не отправляется.
+  // В заявку само согласие не передаётся.
   const consent = document.getElementById('f-consent');
   const consentError = document.getElementById('f-consent-error');
 
@@ -427,8 +426,7 @@ document.addEventListener('click', (event) => {
     return ok;
   };
 
-  const hideConsent = () => {
-    consentField.hidden = true;
+  const resetConsent = () => {
     consent.removeAttribute('aria-invalid');
     consentError.textContent = '';
   };
@@ -440,7 +438,6 @@ document.addEventListener('click', (event) => {
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (submitBtn.disabled) return;
-    consentField.hidden = false;
     const results = Object.keys(fields).map(validate);
     results.push(validateConsent());
     if (results.includes(false)) {
@@ -457,7 +454,7 @@ document.addEventListener('click', (event) => {
     if (sent) {
       reachGoal('lead_success');
       form.reset();
-      hideConsent();
+      resetConsent();
       show(success);
       return;
     }
