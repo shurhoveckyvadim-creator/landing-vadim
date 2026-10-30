@@ -691,27 +691,41 @@ button { font: inherit; color: inherit; }
   .tiers > .tier > .tier__block { display: block; }
 }
 
+/* Стрелки поверх ленты — по центру карточек по вертикали, у левого и правого края */
 .carousel__nav {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 20px;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
 }
 .carousel__btn {
+  --btn: 48px;
   display: grid;
   place-items: center;
-  width: 48px;
-  height: 48px;
+  width: var(--btn);
+  height: var(--btn);
+  /* половина кнопки — на поле страницы, половина — на краю карточки, где только её отступ */
+  margin: 0 calc(var(--btn) / -2);
   border: 1px solid var(--line);
   border-radius: 50%;
   background: var(--surface) url("assets/icons/chevron-down.svg") center / 18px no-repeat;
+  box-shadow: var(--shadow-lg);
   cursor: pointer;
+  pointer-events: auto;
   transform: rotate(90deg);
-  transition: border-color .2s, box-shadow .2s, opacity .2s;
+  transition: border-color .2s, box-shadow .2s, opacity .2s, visibility .2s;
 }
 .carousel__btn--next { transform: rotate(-90deg); }
-.carousel__btn:hover:not(:disabled) { border-color: var(--ink); box-shadow: var(--shadow); }
-.carousel__btn:disabled { opacity: .35; cursor: default; }
+.carousel__btn:hover:not(:disabled) { border-color: var(--ink); }
+/* В начале и в конце ленты лишняя стрелка скрыта, чтобы не закрывать карточку */
+.carousel__btn:disabled { opacity: 0; visibility: hidden; }
+@media (max-width: 559px) {
+  /* на телефоне поле страницы узкое — кнопка меньше и прижата к краю экрана */
+  .carousel__btn { --btn: 36px; margin: 0 calc(var(--gutter) * -1); background-size: 14px; }
+}
 
 .tier {
   display: grid;

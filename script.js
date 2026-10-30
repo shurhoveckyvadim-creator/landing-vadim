@@ -216,17 +216,47 @@ document.addEventListener('click', (event) => {
     return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
   };
 
+  const cards = [...track.querySelectorAll('.tier')];
+  const carousel = track.closest('.carousel');
+
+  // Стрелки — по центру карточки, которая сейчас первой на экране: на телефоне карточки разной высоты
+  const placeNav = () => {
+    const trackLeft = track.getBoundingClientRect().left + parseFloat(getComputedStyle(track).paddingLeft);
+    let current = cards[0];
+    let best = Infinity;
+    cards.forEach((card) => {
+      const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+      if (distance < best) { best = distance; current = card; }
+    });
+    if (!current || !carousel) return;
+    nav.style.top = `${current.getBoundingClientRect().top - carousel.getBoundingClientRect().top}px`;
+    nav.style.height = `${current.offsetHeight}px`;
+    nav.style.bottom = 'auto';
+  };
+
   const update = () => {
     const max = track.scrollWidth - track.clientWidth;
     nav.hidden = max <= 1;
     prev.disabled = track.scrollLeft <= 1;
     next.disabled = track.scrollLeft >= max - 1;
+    if (!nav.hidden) placeNav();
   };
 
   prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
   next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
-  track.addEventListener('scroll', update, { passive: true });
+  // Последнее событие scroll может прийти до того, как лента «примагнитится» к карточке, —
+  // поэтому пересчитываем ещё и после остановки прокрутки
+  let settle;
+  track.addEventListener('scroll', () => {
+    update();
+    clearTimeout(settle);
+    settle = setTimeout(update, 120);
+  }, { passive: true });
+  track.addEventListener('scrollend', update);
   window.addEventListener('resize', update);
+  // Высота карточки меняется при раскрытии «Остальное» и после загрузки шрифтов
+  if ('ResizeObserver' in window) new ResizeObserver(update).observe(track);
+  panels.forEach((panel) => panel.addEventListener('toggle', update));
   update();
 })();
 
