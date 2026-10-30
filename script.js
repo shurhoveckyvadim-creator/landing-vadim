@@ -168,6 +168,19 @@ document.addEventListener('click', (event) => {
     panels.forEach((panel) => { panel.open = anyOpen; });
   });
 
+  // ПК, «Остальное» раскрыто во всех карточках: дополнительные списки «Что входит» разной длины —
+  // выравниваем их по самому длинному, чтобы линия «Что не входит» шла на одном уровне
+  const extraLists = panels.map((panel) => panel.querySelector('.tier__more-body > .tier__list--in')).filter(Boolean);
+  const equalizeExtras = () => {
+    extraLists.forEach((list) => { list.style.minHeight = ''; });
+    if (isPhone.matches || !panels.every((panel) => panel.open)) return;
+    const tallest = Math.max(...extraLists.map((list) => list.offsetHeight));
+    extraLists.forEach((list) => { list.style.minHeight = `${tallest}px`; });
+  };
+  panels.forEach((panel) => panel.addEventListener('toggle', equalizeExtras));
+  isPhone.addEventListener('change', equalizeExtras);
+  window.addEventListener('resize', equalizeExtras);
+
   // На телефоне «Остальное» открывается и закрывается касанием по блоку «Что входит».
   // Касание считается, только если палец почти не сдвинулся и ни страница, ни карусель
   // не прокрутились — так прокрутка и свайп карусели ничего не открывают и не закрывают.
@@ -219,8 +232,8 @@ document.addEventListener('click', (event) => {
   const cards = [...track.querySelectorAll('.tier')];
   const carousel = track.closest('.carousel');
 
-  // Стрелки — по центру карточки, которая сейчас первой на экране: на телефоне карточки разной высоты
-  const placeNav = () => {
+  // Карточка, которая сейчас первой на экране
+  const currentCard = () => {
     const trackLeft = track.getBoundingClientRect().left + parseFloat(getComputedStyle(track).paddingLeft);
     let current = cards[0];
     let best = Infinity;
@@ -228,6 +241,22 @@ document.addEventListener('click', (event) => {
       const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
       if (distance < best) { best = distance; current = card; }
     });
+    return current;
+  };
+
+  // Телефон: строки карточек общие, поэтому раскрытое «Остальное» растягивает и соседние карточки.
+  // Когда карточку пролистали, сворачиваем её «Остальное» — соседние снова без пустот.
+  const closeOffscreen = () => {
+    if (!isPhone.matches) return;
+    const current = currentCard();
+    panels.forEach((panel) => {
+      if (panel.open && !current.contains(panel)) panel.open = false;
+    });
+  };
+
+  // Стрелки — по центру карточки, которая сейчас первой на экране
+  const placeNav = () => {
+    const current = currentCard();
     if (!current || !carousel) return;
     nav.style.top = `${current.getBoundingClientRect().top - carousel.getBoundingClientRect().top}px`;
     nav.style.height = `${current.offsetHeight}px`;
@@ -250,9 +279,9 @@ document.addEventListener('click', (event) => {
   track.addEventListener('scroll', () => {
     update();
     clearTimeout(settle);
-    settle = setTimeout(update, 120);
+    settle = setTimeout(() => { closeOffscreen(); update(); }, 120);
   }, { passive: true });
-  track.addEventListener('scrollend', update);
+  track.addEventListener('scrollend', () => { closeOffscreen(); update(); });
   window.addEventListener('resize', update);
   // Высота карточки меняется при раскрытии «Остальное» и после загрузки шрифтов
   if ('ResizeObserver' in window) new ResizeObserver(update).observe(track);

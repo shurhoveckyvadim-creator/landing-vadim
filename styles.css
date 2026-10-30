@@ -683,13 +683,6 @@ button { font: inherit; color: inherit; }
   row-gap: 0;
   align-content: start;
 }
-/* На телефоне карточки видны по одной — общие строки только добавили бы пустоты,
-   особенно когда в одной карточке раскрыто «Остальное» */
-@media (max-width: 899px) {
-  .tiers { grid-template-rows: auto; align-items: start; }
-  .tiers > .tier { grid-row: auto; grid-template-rows: none; display: flex; flex-direction: column; }
-  .tiers > .tier > .tier__block { display: block; }
-}
 
 /* Стрелки поверх ленты — по центру карточек по вертикали, у левого и правого края */
 .carousel__nav {
