@@ -412,10 +412,37 @@ document.addEventListener('click', (event) => {
 
   let lastMessage = '';
 
+  // Согласие на обработку персональных данных: поле появляется при первой попытке отправить форму,
+  // без галочки заявка не отправляется. В заявку само согласие не передаётся.
+  const consentField = document.getElementById('f-consent-field');
+  const consent = document.getElementById('f-consent');
+  const consentError = document.getElementById('f-consent-error');
+
+  const validateConsent = () => {
+    const ok = consent.checked;
+    consent.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    consentError.textContent = ok
+      ? ''
+      : 'Чтобы отправить заявку, отметьте согласие на обработку персональных данных.';
+    return ok;
+  };
+
+  const hideConsent = () => {
+    consentField.hidden = true;
+    consent.removeAttribute('aria-invalid');
+    consentError.textContent = '';
+  };
+
+  consent.addEventListener('change', () => {
+    if (consent.getAttribute('aria-invalid') === 'true') validateConsent();
+  });
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (submitBtn.disabled) return;
+    consentField.hidden = false;
     const results = Object.keys(fields).map(validate);
+    results.push(validateConsent());
     if (results.includes(false)) {
       const firstInvalid = form.querySelector('[aria-invalid="true"]');
       if (firstInvalid) firstInvalid.focus();
@@ -430,6 +457,7 @@ document.addEventListener('click', (event) => {
     if (sent) {
       reachGoal('lead_success');
       form.reset();
+      hideConsent();
       show(success);
       return;
     }

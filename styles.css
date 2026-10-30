@@ -1135,6 +1135,39 @@ button { font: inherit; color: inherit; }
 .field__error { color: var(--error); font-size: 14px; }
 .field__error:empty { display: none; }
 
+/* Согласие на обработку данных: вся строка — большая зона нажатия, удобная на телефоне */
+.field--consent { animation: fade-in .25s ease-out; }
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #c9c6bc;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.45;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color .2s, box-shadow .2s;
+}
+.consent:hover { border-color: #a9a69c; }
+.consent__input {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.consent__input:focus-visible { outline-offset: 2px; }
+.consent:has(.consent__input[aria-invalid="true"]) {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(180, 35, 24, .12);
+}
+
 .form__note { color: var(--ink-mute); font-size: 13px; text-align: center; }
 .form__free {
   margin-top: -6px;
@@ -1192,15 +1225,41 @@ button { font: inherit; color: inherit; }
 }
 .footer__inner {
   display: grid;
-  gap: 20px;
+  gap: 8px;
 }
 @media (min-width: 768px) {
-  .footer__inner { grid-template-columns: 1fr auto auto; align-items: center; gap: 40px; }
+  .footer__inner { grid-template-columns: 1fr auto; align-items: center; gap: 32px; }
 }
-.footer__name { color: #fff; font-weight: 700; }
-.footer__links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
-.footer__links a { color: #e4e6e8; text-underline-offset: 3px; }
-.footer__links a:hover { color: #fff; }
+.footer__link { color: #e4e6e8; text-underline-offset: 3px; }
+.footer__link:hover { color: #fff; }
+
+/* ===== Страница политики конфиденциальности ===== */
+.legal { padding-top: 48px; }
+/* Длинное «конфиденциальности» в широком Unbounded не помещается в 360px при обычном размере заголовка */
+.legal .section__title { font-size: clamp(22px, 6.4vw, 46px); overflow-wrap: anywhere; }
+.header__home { margin-left: auto; }
+.legal__lead { margin-top: 20px; color: var(--ink-soft); font-size: 18px; }
+.legal__date { margin-top: 6px; color: var(--ink-mute); font-size: 15px; }
+.legal h2 {
+  margin: 40px 0 12px;
+  font-size: clamp(19px, 2.4vw, 22px);
+  line-height: 1.3;
+}
+.legal p + p { margin-top: 10px; }
+.legal p, .legal li { color: var(--ink-soft); line-height: 1.65; }
+.legal ul { display: grid; gap: 8px; }
+.legal li { position: relative; padding-left: 18px; }
+.legal li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.legal .legal__back { margin-top: 48px; }
 
 /* ===== Модальное окно ===== */
 .modal {
