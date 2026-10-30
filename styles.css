@@ -644,26 +644,74 @@ button { font: inherit; color: inherit; }
 }
 
 /* ===== Тарифы ===== */
-.tiers { display: grid; gap: 20px; }
-@media (min-width: 900px) {
-  /* subgrid выравнивает строки карточек: цена, описание, списки, срок и кнопка на одной высоте */
-  .tiers {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(8, auto);
-    column-gap: 24px;
-    row-gap: 0;
-  }
-  .tier { grid-row: span 8; grid-template-rows: subgrid; }
-  /* «Что входит»: подпись, видимый список и «Остальное» — отдельные строки,
-     чтобы кнопки «Остальное» в обеих карточках стояли на одном уровне */
-  .tier > .tier__block {
-    display: grid;
-    grid-row: span 3;
-    grid-template-rows: subgrid;
-    row-gap: 0;
-    align-content: start;
-  }
+/* Карусель: лента карточек прокручивается вбок, если они не помещаются.
+   subgrid выравнивает строки всех карточек: цена, описание, списки, «Остальное», срок и кнопка */
+.carousel { position: relative; }
+.tiers {
+  --tier-w: min(86%, 420px);
+  --tier-gap: 16px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--tier-w);
+  grid-template-rows: repeat(8, auto);
+  column-gap: var(--tier-gap);
+  row-gap: 0;
+  /* место для тени и подъёма карточки при наведении — иначе их обрежет прокрутка */
+  margin: -12px calc(var(--gutter) * -1) -28px;
+  padding: 12px var(--gutter) 28px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
 }
+.tiers::-webkit-scrollbar { display: none; }
+.tiers:focus-visible { outline-offset: -2px; border-radius: var(--radius); }
+@media (min-width: 900px) {
+  .tiers { --tier-gap: 24px; --tier-w: calc((100% - var(--tier-gap)) / 2); }
+}
+@media (min-width: 1100px) {
+  .tiers { --tier-w: calc((100% - 2 * var(--tier-gap)) / 3); }
+}
+.tier { grid-row: span 8; grid-template-rows: subgrid; scroll-snap-align: start; }
+/* «Что входит»: подпись, видимый список и «Остальное» — отдельные строки,
+   чтобы кнопки «Остальное» во всех карточках стояли на одном уровне */
+.tier > .tier__block {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  align-content: start;
+}
+/* На телефоне карточки видны по одной — общие строки только добавили бы пустоты,
+   особенно когда в одной карточке раскрыто «Остальное» */
+@media (max-width: 899px) {
+  .tiers { grid-template-rows: auto; align-items: start; }
+  .tiers > .tier { grid-row: auto; grid-template-rows: none; display: flex; flex-direction: column; }
+  .tiers > .tier > .tier__block { display: block; }
+}
+
+.carousel__nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.carousel__btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface) url("assets/icons/chevron-down.svg") center / 18px no-repeat;
+  cursor: pointer;
+  transform: rotate(90deg);
+  transition: border-color .2s, box-shadow .2s, opacity .2s;
+}
+.carousel__btn--next { transform: rotate(-90deg); }
+.carousel__btn:hover:not(:disabled) { border-color: var(--ink); box-shadow: var(--shadow); }
+.carousel__btn:disabled { opacity: .35; cursor: default; }
 
 .tier {
   display: grid;
@@ -709,6 +757,7 @@ button { font: inherit; color: inherit; }
   line-height: 1.1;
   letter-spacing: -.03em;
 }
+.tier__period { color: var(--ink-mute); font-size: .5em; font-weight: 500; letter-spacing: 0; }
 .tier__for { margin-top: 12px; color: var(--ink-soft); font-size: 16px; }
 
 .tier__block { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); }
@@ -785,9 +834,9 @@ button { font: inherit; color: inherit; }
 .tier__more-btn:hover { border-color: var(--ink); box-shadow: var(--shadow); }
 .tier__more[open] .tier__more-btn::after { transform: rotate(180deg); }
 .tier__more-body { margin-top: 16px; animation: fade-in .25s ease-out; }
-/* На телефоне раскрытый список закрывается касанием (см. script.js) */
+/* На телефоне «Остальное» открывается и закрывается касанием по блоку «Что входит» (см. script.js) */
 @media (max-width: 899px) {
-  .tier__more-body { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .tier > .tier__block { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 }
 
 /* ===== Условия работы ===== */

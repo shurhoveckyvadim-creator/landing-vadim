@@ -142,13 +142,14 @@ document.addEventListener('click', (event) => {
   });
 })();
 
-/* ===== Тарифы: «Остальное» ===== */
+/* ===== Тарифы: карусель и «Остальное» ===== */
 (() => {
+  const track = document.getElementById('tiers');
   const panels = [...document.querySelectorAll('.tier__more')];
-  if (!panels.length) return;
+  if (!track || !panels.length) return;
 
-  // Карточки рядом (ПК) — «Остальное» открывается и закрывается в обеих сразу, чтобы их было удобно сравнивать.
-  // Карточки друг под другом (телефон) — каждая открывается сама по себе.
+  // Карточки в несколько колонок (ПК) — «Остальное» открывается и закрывается во всех сразу,
+  // чтобы их было удобно сравнивать. На телефоне каждая карточка открывается сама по себе.
   const isPhone = window.matchMedia('(max-width: 899px)');
 
   panels.forEach((panel) => {
@@ -160,42 +161,73 @@ document.addEventListener('click', (event) => {
     });
   });
 
-  // При переходе к ширине ПК (поворот планшета, изменение окна) выравниваем состояние:
-  // если хоть один список открыт — открываем все
+  // При переходе к ширине ПК выравниваем состояние: если хоть один список открыт — открываем все
   isPhone.addEventListener('change', () => {
     if (isPhone.matches) return;
     const anyOpen = panels.some((panel) => panel.open);
     panels.forEach((panel) => { panel.open = anyOpen; });
   });
 
-  // На телефоне раскрытый список закрывается касанием по нему.
-  // Касание считается, только если палец почти не сдвинулся и страница не прокрутилась —
-  // так прокрутка списка его не закрывает.
+  // На телефоне «Остальное» открывается и закрывается касанием по блоку «Что входит».
+  // Касание считается, только если палец почти не сдвинулся и ни страница, ни карусель
+  // не прокрутились — так прокрутка и свайп карусели ничего не открывают и не закрывают.
   const TAP_TOLERANCE = 10;
   let start = null;
 
-  panels.forEach((panel) => {
-    const body = panel.querySelector('.tier__more-body');
-    const summary = panel.querySelector('summary');
-    if (!body || !summary) return;
+  // Любая прокрутка между касанием и кликом — это жест, а не нажатие.
+  // Проверка по факту прокрутки, а не по итоговой позиции: карусель после свайпа
+  // может «примагнититься» обратно к той же карточке.
+  const markScrolled = () => { if (start) start.scrolled = true; };
+  track.addEventListener('scroll', markScrolled, { passive: true });
+  window.addEventListener('scroll', markScrolled, { passive: true });
 
-    body.addEventListener('pointerdown', (event) => {
-      start = { x: event.clientX, y: event.clientY, scrollY: window.scrollY };
+  panels.forEach((panel) => {
+    const block = panel.closest('.tier__block');
+    const summary = panel.querySelector('summary');
+    if (!block || !summary) return;
+
+    block.addEventListener('pointerdown', (event) => {
+      start = { x: event.clientX, y: event.clientY, scrolled: false };
     });
 
-    body.addEventListener('click', (event) => {
-      if (!isPhone.matches || !panel.open || !start) return;
-      const moved = Math.abs(event.clientX - start.x) > TAP_TOLERANCE
-        || Math.abs(event.clientY - start.y) > TAP_TOLERANCE
-        || Math.abs(window.scrollY - start.scrollY) > TAP_TOLERANCE;
+    block.addEventListener('click', (event) => {
+      if (!isPhone.matches || !start || summary.contains(event.target)) return;
+      const moved = start.scrolled
+        || Math.abs(event.clientX - start.x) > TAP_TOLERANCE
+        || Math.abs(event.clientY - start.y) > TAP_TOLERANCE;
       start = null;
       if (moved || String(window.getSelection()).trim()) return;
 
-      panel.open = false;
-      // Если касались глубоко в списке, кнопка могла остаться за верхом экрана — возвращаем к ней
-      if (summary.getBoundingClientRect().top < 0) summary.scrollIntoView({ block: 'center' });
+      panel.open = !panel.open;
+      // Если закрыли касанием глубоко в списке, кнопка могла остаться за верхом экрана — возвращаем к ней
+      if (!panel.open && summary.getBoundingClientRect().top < 0) summary.scrollIntoView({ block: 'center' });
     });
   });
+
+  // Карусель: стрелки видны, только если карточки не помещаются; листают на одну карточку
+  const nav = document.querySelector('.carousel__nav');
+  const prev = document.querySelector('[data-carousel-prev]');
+  const next = document.querySelector('[data-carousel-next]');
+  if (!nav || !prev || !next) return;
+
+  const step = () => {
+    const card = track.querySelector('.tier');
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+  };
+
+  const update = () => {
+    const max = track.scrollWidth - track.clientWidth;
+    nav.hidden = max <= 1;
+    prev.disabled = track.scrollLeft <= 1;
+    next.disabled = track.scrollLeft >= max - 1;
+  };
+
+  prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+  track.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();
 
 /* ===== Форма заявки ===== */
